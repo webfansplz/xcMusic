@@ -18,7 +18,8 @@
     "less-loader": "^4.0.3",
     "vue": "^2.2.6",
     "vue-router": "^2.3.1",
-    "vux": "^2.2.2"
+    "vux": "^2.2.2",
+    "vux-loader": "^1.0.61"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

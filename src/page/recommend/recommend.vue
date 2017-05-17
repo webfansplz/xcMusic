@@ -1,13 +1,23 @@
 <template>
   <div id="recommend">
+    <!--轮播开始-->
     <swiper loop auto height="140px" dots-position="center">
       <swiper-item v-for="(item,i) in bannerList" :key="i">
         <img width="100%" height="100%" :src="item.pic">
       </swiper-item>
     </swiper>
+    <!--轮播结束-->
+    <!--推荐歌单开始-->
+    <div class="re-songList">
+      <h1 class="list-item">
+        <b></b> 推荐歌单
+        <i class="iconfont icon-right"></i>
+      </h1>
+    </div>
   </div>
 </template>
 <script>
+  //引入vux轮播组件
   import {
     Swiper,
     SwiperItem
@@ -18,21 +28,35 @@
       Swiper,
       SwiperItem
     },
-    data() {
-      return {}
-    },
     computed: {
+      //获取banner图
       bannerList() {
-        return this.$store.state.recommendList.bannerList;
+        return this.$store.state.recommend.bannerList;
       }
     },
     created() {
-      this.$store.dispatch('get_indexBanner');
+      //页面初始化
+      this.$store.dispatch('initRecommendPage');
     }
   }
 
 </script>
 <style lang="less">
-  #recommend {}
+  @import '../../assets/style/mixin';
+  #recommend {
+    .re-songList {
+      .list-item {
+        position: relative;
+        .mx_fc(15px, #333);
+        .mx_whlh(100%, 45px, 45px);
+        font-weight: normal;
+        b {
+          .mx_hlh(15px, 45px);
+          .mx_bd(1px, #f33);
+          margin-right: 5px;
+        }
+      }
+    }
+  }
 
 </style>

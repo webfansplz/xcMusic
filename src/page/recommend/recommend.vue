@@ -13,6 +13,9 @@
         <b></b> 推荐歌单
         <i class="iconfont icon-right"></i>
       </h1>
+      <ul>
+        <li v-for="(item,i) in PrSongList"><img :src="item.picUrl"></li>
+      </ul>
     </div>
   </div>
 </template>
@@ -32,6 +35,10 @@
       //获取banner图
       bannerList() {
         return this.$store.state.recommend.bannerList;
+      },
+      //获取推荐歌单
+      PrSongList(){
+        return this.$store.state.recommend.PrSongList;
       }
     },
     created() {
@@ -54,6 +61,17 @@
           .mx_hlh(15px, 45px);
           .mx_bd(1px, #f33);
           margin-right: 5px;
+        }
+      }
+      ul{
+        .mx_flex;
+        .mx_flex_content;
+        li{
+          .mx_flex_item(1);
+          .mx_wh(33%,auto);
+          img{
+            height: 100%;
+          }
         }
       }
     }

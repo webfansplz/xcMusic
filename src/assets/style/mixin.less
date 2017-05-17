@@ -1,73 +1,64 @@
 // 全局颜色
- .backgroundRed {
-   background-color: #f33;
- }
- 
- // 定义字体大小,字体颜色
- .mx_fc(@size, @color) {
-   font-size: @size;
-   color: @color;
- }
- 
- // 定义宽高
- .mx_wh(@width, @height) {
-   width: @width;
-   height: @height;
- }
- 
- // 定义宽高行高
- .mx_whlh(@width, @height, @line-height) {
-   width: @width;
-   height: @height;
-   line-height: @line-height;
- }
- 
- // 定义高行高
- .mx_hlh(@height, @line-height) {
-   height: @height;
-   line-height: @line-height;
- }
- 
- // 绝对定位定义top,left值
- .mx_postl(@top, @left) {
-   position: absolute;
-   top: @top;
-   left: @left;
- }
- 
- // flex 布局盒模型
- .mx_flex {
-   display: -webkit-box;
-   display: -moz-box;
-   display: flex;
- }
- 
- // flex 布局宽度
- .mx_flex_item(@num) {
-   -webkit-box-flex: @num;
-   -moz-box-flex: @num;
-   flex: @num;
- }
- 
- // flex 水平垂直居中
- .mx_flex_mid {
-   display: -webkit-box;
-   display: -moz-box;
-   display: flex;
-   -webkit-box-pack: center;
-   -moz-box-pack: center;
-   justify-content: center;
-   -webkit-box-align: center;
-   -moz-box-align: center;
-   align-items: center;
- }
- 
- // 圆角
- .mx_bdrs(@radius) {
-   border-radius: @radius;
- }
- 
- // 边框
- .mx_bd(@num, @color) {
-   border: @num solid @color;
- }
+.backgroundRed {
+  background-color: #f33;
+} // 定义字体大小,字体颜色
+.mx_fc(@size, @color) {
+  font-size: @size;
+  color: @color;
+} // 定义宽高
+.mx_wh(@width, @height) {
+  width: @width;
+  height: @height;
+} // 定义宽高行高
+.mx_whlh(@width, @height, @line-height) {
+  width: @width;
+  height: @height;
+  line-height: @line-height;
+} // 定义高行高
+.mx_hlh(@height, @line-height) {
+  height: @height;
+  line-height: @line-height;
+} // 绝对定位定义top,left值
+.mx_postl(@top, @left) {
+  position: absolute;
+  top: @top;
+  left: @left;
+} // flex 布局盒模型
+.mx_flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex;
+} // flex 布局宽度
+.mx_flex_item(@num) {
+  -webkit-box-flex: @num;
+  -moz-box-flex: @num;
+  flex: @num;
+} // flex布局容器属性设置
+.mx_flex_content {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -moz-box-orient: horizontal;
+  -moz-box-direction: normal;
+  flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+} // flex 水平垂直居中
+.mx_flex_mid {
+  display: -webkit-box;
+  display: -moz-box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  align-items: center;
+} // 圆角
+.mx_bdrs(@radius) {
+  border-radius: @radius;
+} // 边框
+.mx_bd(@num, @color) {
+  border: @num solid @color;
+}

@@ -1,39 +1,76 @@
-// 全局颜色
+ // 全局颜色
 .backgroundRed {
   background-color: #f33;
-} // 定义字体大小,字体颜色
+}
+
+// 定义字体大小,字体颜色
 .mx_fc(@size, @color) {
   font-size: @size;
   color: @color;
-} // 定义宽高
+}
+
+// 定义宽高
 .mx_wh(@width, @height) {
   width: @width;
   height: @height;
-} // 定义宽高行高
+}
+
+// 定义宽高行高
 .mx_whlh(@width, @height, @line-height) {
   width: @width;
   height: @height;
   line-height: @line-height;
-} // 定义高行高
+}
+
+// 定义高行高
 .mx_hlh(@height, @line-height) {
   height: @height;
   line-height: @line-height;
-} // 绝对定位定义top,left值
+}
+
+// 绝对定位定义top,left值
 .mx_postl(@top, @left) {
   position: absolute;
   top: @top;
   left: @left;
-} // flex 布局盒模型
+}
+
+// 绝对定位定义top,right值
+.mx_postr(@top, @right) {
+  position: absolute;
+  top: @top;
+  right: @right;
+}
+
+// 绝对定位定义bottom,left值
+.mx_posbl(@bottom, @left) {
+  position: absolute;
+  bottom: @bottom;
+  left: @left;
+}
+
+// 绝对定位定义bottom,right值
+.mx_posbr(@bottom, @right) {
+  position: absolute;
+  bottom: @bottom;
+  right: @right;
+}
+
+// flex 布局盒模型
 .mx_flex {
   display: -webkit-box;
   display: -moz-box;
   display: flex;
-} // flex 布局宽度
+}
+
+// flex 布局宽度
 .mx_flex_item(@num) {
   -webkit-box-flex: @num;
   -moz-box-flex: @num;
   flex: @num;
-} // flex布局容器属性设置
+}
+
+// flex布局容器属性设置
 .mx_flex_content {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -44,7 +81,9 @@
   -webkit-box-pack: justify;
   -moz-box-pack: justify;
   justify-content: space-between;
-} // flex 水平垂直居中
+}
+
+// flex 水平垂直居中
 .mx_flex_mid {
   display: -webkit-box;
   display: -moz-box;
@@ -55,10 +94,50 @@
   -webkit-box-align: center;
   -moz-box-align: center;
   align-items: center;
-} // 圆角
+}
+
+// 圆角
 .mx_bdrs(@radius) {
   border-radius: @radius;
-} // 边框
+}
+
+// 边框
 .mx_bd(@num, @color) {
   border: @num solid @color;
 }
+
+// 多行文本显示省略号
+.mx_more_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+// 单行文本显示省略号
+.mx_single_ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 实现移动端0.5px边框
+// .halfBorder {
+//   position: relative;
+// }
+// .halfBorder:after {
+//   content: "  ";
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   z-index: -1;
+//   width: 200%;
+//   height: 200%;
+//   -webkit-transform-origin: 0 0;
+//   -ms-transform-origin: 0 0;
+//   transform-origin: 0 0;
+//   -webkit-transform: scale(.5, .5);
+//   -ms-transform: scale(.5, .5);
+//   transform: scale(.5, .5);
+// }

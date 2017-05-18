@@ -1,25 +1,109 @@
 <template>
   <div id="headerNav">
-    <span>个性推荐</span>
-    <span>歌单</span>
-    <span>主播电台</span>
-    <span>排行榜</span>
+    <div class="search">
+      <i class="iconfont icon-micro"></i>
+      <div class="search-box">
+        <label class="iconfont icon-glass" for="searchBox">
+          <span>搜索音乐,歌词,电台</span>
+      </label>
+        <input type="text" id="searchBox" @focus="goSearch">
+      </div>
+      <i class="iconfont icon-music"></i>
+    </div>
+    <tab :line-width="2" :custom-bar-width="getBarWidth" bar-active-color="#f33" active-color='#f33' class="tabNaver">
+      <tab-item selected>个性推荐</tab-item>
+      <tab-item>歌单</tab-item>
+      <tab-item>主播电台</tab-item>
+      <tab-item>排行榜</tab-item>
+    </tab>
   </div>
 </template>
 <script>
+  import {
+    Tab,
+    TabItem
+  } from 'vux';
   export default {
     name: 'headerNav',
+    components: {
+      Tab,
+      TabItem
+    },
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+      //设置tab线条宽度
+      getBarWidth(index) {
+        let num;
+        index == 1 ? num = 28 : num = 42;
+        index % 2 == 0 ? num = 56 : true;
+        return num + 'px'
+      },
+      // 搜索框获取焦点
+      goSearch(){
+        console.log(123)
+      }
+    }
   }
+
 </script>
 <style lang="less">
   @import '../../assets/style/mixin';
-  #headerNav{
-      .mx_flex;
-      .mx_hlh(40px,40px);
-      .mx_fc(14px,#666);
-      span{
-          .mx_flex_item(1);
-          text-align: center;
+  #headerNav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    .search {
+      position: relative;
+      .mx_whlh(100%, 48px, 48px);
+      .backgroundRed;
+      text-align: center;
+      .icon-micro {
+        .mx_fc(22px, #fff);
+        .mx_postl(0, 5%);
       }
+      .icon-music {
+        .mx_fc(22px, #fff);
+        .mx_postl(3px, 90%);
+      }
+      .search-box {
+        position: relative;
+        display: inline-block;
+        width: 70%;
+        label {
+          color: #dedede;
+          .mx_hlh(32px, 34px);
+          .mx_fc(14px, #dedede);
+          .mx_postl(8px, 22%);
+          span {
+            font-size: 13px;
+          }
+        }
+        label:before {
+          margin-right: 5px;
+        }
+        input {
+          .mx_whlh(100%, 32px, 24px);
+          .mx_bdrs(20px);
+          text-indent: 5%;
+        }
+      }
+    }
+    .tabNaver {
+      .mx_flex;
+      .mx_hlh(40px, 40px);
+      .mx_fc(14px, #666);
+      background-color: #fff;
+      span {
+        .mx_flex_item(1);
+        text-align: center;
+      }
+    }
   }
+
 </style>

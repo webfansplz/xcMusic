@@ -1,7 +1,7 @@
 <template>
   <div id="recommend">
     <!--轮播开始-->
-    <swiper loop auto height="140px" dots-position="center">
+    <swiper loop auto :aspect-ratio="300/800" dots-position="center">
       <swiper-item v-for="(item,i) in bannerList" :key="i">
         <img width="100%" height="100%" :src="item.pic">
       </swiper-item>
@@ -14,9 +14,60 @@
         <i class="iconfont icon-right"></i>
       </h1>
       <ul>
-        <li v-for="(item,i) in PrSongList"><img :src="item.picUrl"></li>
+        <li v-for="(item,i) in PrSongList">
+          <i class="iconfont icon-headset">{{formatPlayCount(item.playCount)}}</i>
+          <img :src="item.picUrl">
+          <p>{{item.name}}</p>
+        </li>
       </ul>
     </div>
+    <!--推荐歌单结束-->
+    <!--独家放送开始-->
+    <div class="re-PrivateContxt">
+      <h1 class="list-item">
+        <b></b> 独家放送
+        <i class="iconfont icon-right"></i>
+      </h1>
+      <ul>
+        <li v-for="(item,i) in PrivateContxt">
+          <img :src="item.picUrl">
+          <p>{{item.name}}</p>
+        </li>
+      </ul>
+    </div>
+    <!--独家放送结束-->
+    <!--推荐MV开始-->
+    <div class="re-PrMV">
+      <h1 class="list-item">
+        <b></b> 推荐MV
+        <i class="iconfont icon-right"></i>
+      </h1>
+      <ul>
+        <li v-for="(item,i) in PrMV">
+          <i class="iconfont icon-playMv">{{formatPlayCount(item.playCount)}}</i>
+          <img :src="item.picUrl">
+          <p>{{item.name}}</p>
+          <span>{{item.artists[0].name}}</span>
+        </li>
+      </ul>
+    </div>
+    <!--推荐MV结束-->
+    <!--主播电台开始-->
+    <div class="re-BCStation">
+      <h1 class="list-item">
+        <b></b> 主播电台
+        <i class="iconfont icon-right"></i>
+      </h1>
+      <ul>
+        <li v-for="(item,i) in PrBCStation">
+          <i class="iconfont icon-play"></i>
+          <img :src="item.picUrl">
+          <p>{{item.name}}</p>
+          <span>{{item.program.radio.name}}</span>
+        </li>
+      </ul>
+    </div>
+    <!--主播电台结束-->
   </div>
 </template>
 <script>
@@ -31,19 +82,42 @@
       Swiper,
       SwiperItem
     },
+    created() {
+      //页面初始化
+      this.$store.dispatch('initRecommendPage');
+    },
     computed: {
       //获取banner图
       bannerList() {
         return this.$store.state.recommend.bannerList;
       },
       //获取推荐歌单
-      PrSongList(){
+      PrSongList() {
         return this.$store.state.recommend.PrSongList;
+      },
+      //获取独家放送
+      PrivateContxt() {
+        return this.$store.state.recommend.PrivateContxt;
+      },
+      //获取推荐Mv
+      PrMV() {
+        return this.$store.state.recommend.PrMV;
+      },
+      //获取主播电台
+      PrBCStation() {
+        return this.$store.state.recommend.PrBCStation;
       }
     },
-    created() {
-      //页面初始化
-      this.$store.dispatch('initRecommendPage');
+    methods: {
+      //格式化播放数
+      formatPlayCount(val) {
+        let num = parseInt(val / 10000);
+        if (num >= 10) {
+          return num + '万';
+        } else {
+          return parseInt(val);
+        }
+      }
     }
   }
 
@@ -51,27 +125,91 @@
 <style lang="less">
   @import '../../assets/style/mixin';
   #recommend {
-    .re-songList {
-      .list-item {
+    .list-item {
+      position: relative;
+      .mx_fc(15px, #333);
+      .mx_whlh(100%, 45px, 45px);
+      font-weight: normal;
+      b {
+        .mx_hlh(15px, 45px);
+        .mx_bd(1px, #f33);
+        margin-right: 5px;
+      }
+    }
+    ul {
+      .mx_flex;
+      .mx_flex_content;
+      li {
         position: relative;
-        .mx_fc(15px, #333);
-        .mx_whlh(100%, 45px, 45px);
-        font-weight: normal;
-        b {
-          .mx_hlh(15px, 45px);
-          .mx_bd(1px, #f33);
-          margin-right: 5px;
+        padding-bottom: 10px;
+        overflow: hidden;
+        img {
+          display: block;
+          width: 100%;
+        }
+        p {
+          .mx_hlh(30px, 16px);
+          padding: 5px 6px 0;
+          .mx_fc(12px, #666);
         }
       }
-      ul{
-        .mx_flex;
-        .mx_flex_content;
-        li{
-          .mx_flex_item(1);
-          .mx_wh(33%,auto);
-          img{
-            height: 100%;
-          }
+    }
+    .re-songList,
+    .re-BCStation {
+      li {
+        .mx_flex_item(0 0 33%);
+        p {
+          .mx_more_ellipsis;
+        }
+      }
+    }
+    .re-songList {
+      li {
+        i {
+          .mx_postr(3px, 5px);
+          .mx_fc(12px, #fff);
+        }
+      }
+    }
+    .re-PrivateContxt {
+      li {
+        .mx_flex_item(0 0 49.5%);
+        p {
+          .mx_more_ellipsis;
+        }
+      }
+      li:nth-child(3) {
+        .mx_flex_item(0 0 100%);
+      }
+    }
+    .re-PrMV {
+      li {
+        .mx_flex_item(0 0 49.5%);
+        i {
+          .mx_postr(3px, 5px);
+          .mx_fc(12px, #fff);
+        }
+        p {
+          .mx_fc(12px, #333);
+          .mx_single_ellipsis;
+          .mx_hlh(20px, 20px);
+          padding-top: 0;
+        }
+        span {
+          .mx_fc(12px, #666);
+          padding: 0 3px;
+        }
+      }
+    }
+    .re-BCStation {
+      li {
+        span {
+          .mx_fc(12px, #fff);
+          .mx_posbl(48px, 5px);
+        }
+        .icon-play {
+          .mx_fc(14px, #fff);
+          .mx_posbr(48px, 5px);
         }
       }
     }

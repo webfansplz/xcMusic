@@ -1,0 +1,56 @@
+// 将设置放入此文件中以覆盖默认设置
+{
+    //整体缩放
+    "window.zoomLevel": 0,
+    // 以像素为单位控制字号
+    "editor.fontSize": 15,
+    // 显示垂直标尺的列(num)
+    "editor.rulers": [0],
+    "beautify.language": {
+        "js": {
+            "type": [
+                "javascript",
+                "json"
+            ],
+            "filename": [
+                ".jshintrc",
+                ".jsbeautify"
+            ]
+        },
+        "css": [
+            "css",
+            "less",
+            "scss"
+        ],
+        "html": [
+            "htm",
+            "html",
+            "vue"
+        ]
+    },
+    "editor.wordWrap": true,
+    "autoprefixer.formatOnSave": true,
+    "autoprefixer.browsers": [
+        "> 5%",
+        "ie 9",
+        "Firefox >= 20"
+    ],
+    "workbench.colorTheme": "Default Light+",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.minimap.enabled": true,
+    "files.associations": {
+        "*.vue": "vue"
+    },
+    "emmet.syntaxProfiles": {
+        "vue-html": "html",
+        "vue": "html"
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "elm/": true
+    },
+    "vsicons.projectDetection.autoReload": true
+}

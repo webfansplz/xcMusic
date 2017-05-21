@@ -2,7 +2,7 @@
 var path = require('path')
 var api = require("../src/api/apiList");
 var apiList = {};
-var host = "http://localhost:3000/";
+var host = "http://47.94.16.170:3000/";
 for (var i in api) {
 	apiList[api[i]] = {};
 	apiList[api[i]].target = host;
@@ -13,9 +13,9 @@ module.exports = {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: 'statics',
     assetsPublicPath: '/',
-    productionSourceMap: true,
+    productionSourceMap: false,
     productionGzip: false,
     productionGzipExtensions: ['js', 'css'],
     bundleAnalyzerReport: process.env.npm_config_report
@@ -26,7 +26,7 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: apiList,
+    proxyTable: {},
     cssSourceMap: false
   }
 }

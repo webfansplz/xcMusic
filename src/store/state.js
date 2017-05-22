@@ -6,6 +6,7 @@ export default {
     'name': '',
     'creator': {
       'avatarUrl': ''
-    }
+    },
+    'tracks':[]
   }
 }

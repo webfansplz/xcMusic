@@ -17,11 +17,39 @@
           <div>
             <img :src="songListDetails.creator.avatarUrl">
             <span> {{songListDetails.creator.nickname}}</span>
+            <i class="iconfont icon-right"></i>
           </div>
         </div>
       </div>
+      <div class="header-footer">
+        <span>
+            <i class="icon-noCollect iconfont"></i>
+            <p>{{songListDetails.subscribedCount}}</p>
+        </span>
+        <span>
+            <i class="iconfont icon-comments"></i>
+            <p>{{songListDetails.trackCount}}</p>
+        </span>
+        <span>
+            <i class="iconfont icon-forwarding"></i>
+            <p>{{songListDetails.shareCount}}</p>
+        </span>
+      </div>
     </div>
     <!--推荐歌单详情头部结束-->
+    <!--推荐歌曲详情内容开始-->
+    <div class="songList">
+      <ul>
+        <li v-for="(item,i) in songListDetails.tracks" :key="i">
+          <i>{{i+1}}</i>
+          <span>
+            <p>{{item.name}}</p>
+            <s>{{item.ar[0].name}}</s>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <!--推荐歌曲详情内容结束-->
   </div>
 </template>
 <script>
@@ -45,7 +73,7 @@
   @import '../../assets/style/mixin';
   #songListDetails {
     .header {
-      .mx_wh(100%, 230px);
+      .mx_wh(100%, auto);
       background: linear-gradient(left, #dcdcdc, #666);
     }
     .header-title {
@@ -93,18 +121,70 @@
         .mx_whlh(100%, auto, 1);
         .mx_fc(12px, #fff);
         align-items: center;
-        display:flex;
+        display: flex;
       }
       p {
         .mx_fc(16px, #fff);
-        padding: 10px 0;
+        padding: 5% 0;
       }
       img {
         .mx_bdrs(50%);
         width: 15%;
       }
-      span{
-          padding-left:5px;
+      span {
+        padding: 0 5px;
+        .mx_fc(12px, #ccc);
+      }
+      .icon-right {
+        .mx_fc(14px, #ccc);
+      }
+    }
+    .header-footer {
+      text-align: center;
+      padding: 10px 5% 5px;
+      .mx_flex;
+      span {
+        .mx_flex_item(1);
+        i {
+          .mx_fc(20px, #fff);
+        }
+        p {
+          padding-top: 7px;
+          .mx_fc(12px, #fff);
+        }
+      }
+    }
+    .songList {
+      ul {
+        li {
+          .mx_whlh(100%, 40px, 40px);
+          padding: 5px 0;
+          font-size: 0;
+          i {
+            display: inline-block;
+            vertical-align: top;
+            .mx_fc(12px, #666);
+            .mx_whlh(10%, 40px, 40px);
+            text-align: center;
+          }
+          span {
+            display: inline-block;
+            vertical-align: top;
+            .mx_whlh(90%, 40px, 40px);
+            text-align: left;
+            border-bottom: 1px solid #cecece;
+          }
+          p {
+            .mx_fc(14px, #333);
+            .mx_whlh(90%, 20px, 20px);
+          }
+          s {
+            display: block;
+            text-decoration: none;
+            .mx_fc(12px, #ccc);
+            .mx_whlh(90%, 20px, 20px);
+          }
+        }
       }
     }
   }

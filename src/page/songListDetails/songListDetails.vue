@@ -164,25 +164,26 @@
             display: inline-block;
             vertical-align: top;
             .mx_fc(12px, #666);
-            .mx_whlh(10%, 40px, 40px);
+            .mx_whlh(15%, 40px, 40px);
             text-align: center;
           }
           span {
             display: inline-block;
             vertical-align: top;
-            .mx_whlh(90%, 40px, 40px);
+            .mx_whlh(85%, 40px, 40px);
             text-align: left;
             border-bottom: 1px solid #cecece;
           }
           p {
             .mx_fc(14px, #333);
-            .mx_whlh(90%, 20px, 20px);
+            .mx_whlh(85%, 20px, 20px);
+            .mx_single_ellipsis;
           }
           s {
             display: block;
             text-decoration: none;
             .mx_fc(12px, #ccc);
-            .mx_whlh(90%, 20px, 20px);
+            .mx_whlh(85%, 20px, 20px);
           }
         }
       }

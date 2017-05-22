@@ -24,6 +24,7 @@ export default {
   //获取推荐歌单
   async get_Recommend_PrSongList(context) {
     let res = await getData('queryPrSongList');
+    console.log(res)
     context.commit('set_Recommend_PrSongList', res.data.result);
   },
   //获取独家放送

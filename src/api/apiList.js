@@ -14,6 +14,8 @@ const apiList = {
   //推荐MV{个性推荐}
   queryPrMv: "/personalized/mv",
   //主播电台{个性推荐}
-  queryPrBCStation: "/personalized/djprogram"
+  queryPrBCStation: "/personalized/djprogram",
+  //推荐歌单详情
+  querySongListDetail: '/playlist/detail'
 };
 module.exports = apiList;

@@ -1,4 +1,5 @@
 <template>
+<div class="headerNavWrapper">
   <div id="headerNav">
     <div class="search">
       <i class="iconfont icon-micro"></i>
@@ -17,6 +18,7 @@
       <tab-item>排行榜</tab-item>
     </tab>
   </div>
+</div>
 </template>
 <script>
   import {
@@ -52,12 +54,16 @@
 </script>
 <style lang="less">
   @import '../../assets/style/mixin';
+  .headerNavWrapper{
+    height: 88px;
+  }
   #headerNav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 999;
+    height:88px;
     .search {
       position: relative;
       .mx_whlh(100%, 48px, 48px);

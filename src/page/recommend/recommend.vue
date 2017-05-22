@@ -1,5 +1,6 @@
 <template>
   <div id="recommend">
+    <headerNav></headerNav>
     <!--轮播开始-->
     <swiper loop auto :aspect-ratio="300/800" dots-position="center">
       <swiper-item v-for="(item,i) in bannerList" :key="i">
@@ -14,11 +15,11 @@
         <i class="iconfont icon-right"></i>
       </h1>
       <ul>
-        <li v-for="(item,i) in PrSongList">
-          <i class="iconfont icon-headset">{{formatPlayCount(item.playCount)}}</i>
+        <router-link v-for="(item,i) in PrSongList" :key="i" tag="li" :to="{path:'/songListDetails',query:{id:item.id}}">
+          <i class="iconfont icon-headset">{{format.formatPlayCount(item.playCount)}}</i>
           <img :src="item.picUrl">
           <p>{{item.name}}</p>
-        </li>
+        </router-link>
       </ul>
     </div>
     <!--推荐歌单结束-->
@@ -43,12 +44,12 @@
         <i class="iconfont icon-right"></i>
       </h1>
       <ul>
-        <li v-for="(item,i) in PrMV">
-          <i class="iconfont icon-playMv">{{formatPlayCount(item.playCount)}}</i>
+        <router-link v-for="(item,i) in PrMV" :key="i" tag="li" :to="{path:'/home'}">
+          <i class="iconfont icon-playMv">{{format.formatPlayCount(item.playCount)}}</i>
           <img :src="item.picUrl">
           <p>{{item.name}}</p>
           <span>{{item.artists[0].name}}</span>
-        </li>
+        </router-link>
       </ul>
     </div>
     <!--推荐MV结束-->
@@ -71,6 +72,7 @@
   </div>
 </template>
 <script>
+  import headerNav from '../../components/headerNav/headerNav'
   //引入vux轮播组件
   import {
     Swiper,
@@ -79,6 +81,7 @@
   export default {
     name: 'recommend',
     components: {
+      headerNav,
       Swiper,
       SwiperItem
     },
@@ -106,17 +109,6 @@
       //获取主播电台
       PrBCStation() {
         return this.$store.state.recommend.PrBCStation;
-      }
-    },
-    methods: {
-      //格式化播放数
-      formatPlayCount(val) {
-        let num = parseInt(val / 10000);
-        if (num >= 10) {
-          return num + '万';
-        } else {
-          return parseInt(val);
-        }
       }
     }
   }

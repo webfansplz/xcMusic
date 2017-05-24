@@ -42,7 +42,7 @@
       <ul>
         <route-link tag="li" :to="{name:'songDetails',params:{id:item.id}}" v-for="(item,i) in songListDetails.tracks" :key="i">
           <i>{{i+1}}</i>
-          <span>
+          <span class="halfBorder">
             <p>{{item.name}}</p>
             <s>{{item.ar[0].name}}</s>
           </span>
@@ -172,7 +172,6 @@
             vertical-align: top;
             .mx_whlh(85%, 40px, 40px);
             text-align: left;
-            border-bottom: 1px solid #cecece;
           }
           p {
             .mx_fc(14px, #333);

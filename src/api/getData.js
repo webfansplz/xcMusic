@@ -13,11 +13,18 @@ const opera_res = (data) => {
 }
 //通过axios发送请求
 export default async(pathName, queryData) => {
-  let reqdata = opera_req(queryData);
+  // let reqdata = opera_req(queryData);
   let str = "https://bird.ioliu.cn/v1?url=http://47.94.16.170:3000";
   let url = str.concat(api[pathName]);
-  reqdata != null ? url = url.concat('?', reqdata) : true;
-  let result = await axios(url);
+  let result;
+  if (queryData != null) {
+    result = await axios.get(url, {
+      params: queryData
+    });
+  } else {
+    result = await axios(url);
+  }
+
   let resdata = opera_res(result);
   return new Promise((resolve, reject) => {
     resolve(resdata)

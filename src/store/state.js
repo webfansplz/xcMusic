@@ -8,5 +8,7 @@ export default {
       'avatarUrl': ''
     },
     'tracks':[]
-  }
+  },
+  //歌曲详情
+  songDetails:[]
 }

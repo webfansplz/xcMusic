@@ -40,13 +40,13 @@
     <!--推荐歌曲详情内容开始-->
     <div class="songList">
       <ul>
-        <li v-for="(item,i) in songListDetails.tracks" :key="i">
+        <route-link tag="li" :to="{name:'songDetails',params:{id:item.id}}" v-for="(item,i) in songListDetails.tracks" :key="i">
           <i>{{i+1}}</i>
           <span>
             <p>{{item.name}}</p>
             <s>{{item.ar[0].name}}</s>
           </span>
-        </li>
+        </route-link>
       </ul>
     </div>
     <!--推荐歌曲详情内容结束-->
@@ -58,7 +58,7 @@
     components: {},
     created() {
       this.$store.dispatch('get_songListDetails', {
-        id: this.$route.query.id
+        id: this.$route.params.id
       });
     },
     computed: {

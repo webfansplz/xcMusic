@@ -15,7 +15,7 @@
         <i class="iconfont icon-right"></i>
       </h1>
       <ul>
-        <router-link v-for="(item,i) in PrSongList" :key="i" tag="li" :to="{path:'/songListDetails',query:{id:item.id}}">
+        <router-link v-for="(item,i) in PrSongList" :key="i" tag="li" :to="{name:'songListDetails',params:{id:item.id}}">
           <i class="iconfont icon-headset">{{format.formatPlayCount(item.playCount)}}</i>
           <img :src="item.picUrl">
           <p>{{item.name}}</p>

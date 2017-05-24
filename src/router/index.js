@@ -16,7 +16,7 @@ export default new Router({
       name: 'recommend',
       component: recommend
     }, {
-      path: '/songListDetails',
+      path: '/songListDetails/:id',
       name: 'songListDetails',
       component: songListDetails
     }

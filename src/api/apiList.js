@@ -16,6 +16,8 @@ const apiList = {
   //主播电台{个性推荐}
   queryPrBCStation: "/personalized/djprogram",
   //推荐歌单详情
-  querySongListDetail: '/playlist/detail'
+  querySongListDetail: '/playlist/detail',
+  //歌曲详情
+  querySongDetail:'/song/detail'
 };
 module.exports = apiList;

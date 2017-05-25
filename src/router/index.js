@@ -6,6 +6,8 @@ Vue.use(Router)
 const recommend = r => require.ensure([], () => r(require('../page/recommend/recommend')), ' recommend')
 //歌单详情
 const songListDetails = r => require.ensure([], () => r(require('../page/songListDetails/songListDetails')), 'songListDetails')
+//歌曲详情
+const songDetails = r => require.ensure([], () => r(require('../page/songDetails/songDetails')), 'songDetails')
 export default new Router({
   routes: [{
       path: '/',
@@ -19,6 +21,10 @@ export default new Router({
       path: '/songListDetails/:id',
       name: 'songListDetails',
       component: songListDetails
+    },{
+      path:'/songDetails',
+      name:'songDetails',
+      component:songDetails
     }
   ]
 })

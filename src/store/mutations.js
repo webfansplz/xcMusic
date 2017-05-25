@@ -8,7 +8,7 @@ export default {
     state.songListDetails = payload;
   },
   //设置歌曲详情
-  set_songListDetails(state, payload) {
+  set_songDetails(state, payload) {
     state.songDetails = payload;
   }
 }

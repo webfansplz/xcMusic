@@ -16,6 +16,5 @@ export default {
   async get_songDetails(context, payload) {
     let res = await getData('querySongDetail', payload);
     // context.commit('set_songDetails', res.data);
-
   }
 }

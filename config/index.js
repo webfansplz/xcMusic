@@ -2,7 +2,7 @@
 var path = require('path')
 var api = require("../src/api/apiList");
 var apiList = {};
-var host = "http://47.94.16.170:3000/";
+var host = "http://localhost:3000/";
 for (var i in api) {
 	apiList[api[i]] = {};
 	apiList[api[i]].target = host;
@@ -26,7 +26,7 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: apiList,
     cssSourceMap: false
   }
 }

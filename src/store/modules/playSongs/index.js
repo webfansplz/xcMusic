@@ -2,7 +2,17 @@ import getData from '../../../api/getData';
 export default {
   state: {
     //歌曲详情
-    songDetails: [],
+    songDetails: {
+      songs: [{
+        al: {
+          picUrl: ''
+        },
+        ar: [{
+          name: ''
+        }],
+        name:''
+      }]
+    },
     //音乐url
     musicUrl: [],
     //音乐歌词

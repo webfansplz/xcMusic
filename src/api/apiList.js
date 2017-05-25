@@ -18,6 +18,10 @@ const apiList = {
   //推荐歌单详情
   querySongListDetail: '/playlist/detail',
   //歌曲详情
-  querySongDetail:'/song/detail'
+  querySongDetail:'/song/detail',
+  //音乐url
+  queryMusicUrl:"/music/url",
+  //音乐歌词
+  queryLyric:"/lyric"
 };
 module.exports = apiList;

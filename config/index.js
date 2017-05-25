@@ -26,7 +26,7 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: apiList,
+    proxyTable: {},
     cssSourceMap: false
   }
 }

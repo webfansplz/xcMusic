@@ -10,11 +10,6 @@ export default {
   async get_songListDetails(context, payload) {
     let res = await getData('querySongListDetail', payload);
     context.commit('set_songListDetails', res.data.playlist);
-    console.log(res)
-  },
-  //获取歌曲详情
-  async get_songDetails(context, payload) {
-    let res = await getData('querySongDetail', payload);
-    // context.commit('set_songDetails', res.data);
+    // console.log(res)
   }
 }

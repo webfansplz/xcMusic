@@ -5,6 +5,7 @@ import mutations from './mutations'
 import actions from './actions'
 import getters from './getters'
 import recommend from './modules/recommend'
+import playSongs from './modules/playSongs'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state,
@@ -12,6 +13,7 @@ export default new Vuex.Store({
   actions,
   getters,
   modules: {
-    recommend
+    recommend,
+    playSongs
   }
 })

@@ -40,7 +40,7 @@
     <!--推荐歌曲详情内容开始-->
     <div class="songList">
       <ul>
-        <router-link tag="li" :to="{name:'songDetails',params:{id:item.id}}" v-for="(item,i) in songListDetails.tracks" :key="i">
+        <router-link tag="li"  v-for="(item,i) in songListDetails.tracks" :key="i" :to="{name:'songDetails',params:{id:item.id}}">
           <i>{{i+1}}</i>
           <span class="halfBorder">
             <p>{{item.name}}</p>
@@ -63,7 +63,6 @@
     },
     computed: {
       songListDetails() {
-        console.log(this.$store.state.songListDetails)
         return this.$store.state.songListDetails;
       }
     }

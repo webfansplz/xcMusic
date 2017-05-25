@@ -22,7 +22,7 @@ export default new Router({
       name: 'songListDetails',
       component: songListDetails
     },{
-      path:'/songDetails',
+      path:'/songDetails/:id',
       name:'songDetails',
       component:songDetails
     }

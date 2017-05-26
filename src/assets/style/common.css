@@ -1,5 +1,4 @@
 @import "//at.alicdn.com/t/font_hvditnfo00ey7gb9.css";
-// reset
 body,
 div,
 span,
@@ -35,9 +34,36 @@ select {
   text-decoration: none;
   border: none;
   font-family: "Microsoft Yahei", sans-serif;
-  &:focus {
-    outline: none;
-  }
+}
+body:focus,
+div:focus,
+span:focus,
+header:focus,
+footer:focus,
+section:focus,
+aside:focus,
+article:focus,
+ul:focus,
+dl:focus,
+dt:focus,
+dd:focus,
+li:focus,
+a:focus,
+p:focus,
+h1:focus,
+h2:focus,
+h3:focus,
+h4:focus,
+h5:focus,
+h6:focus,
+i:focus,
+b:focus,
+em:focus,
+textarea:focus,
+button:focus,
+input:focus,
+select:focus {
+  outline: none;
 }
 html,
 body {
@@ -45,55 +71,44 @@ body {
   width: 100%;
   background-color: #fff;
 }
-// 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸
 ::-webkit-scrollbar {
   width: 2px;
   height: 2px;
 }
-
-// 定义滚动条轨道 内阴影+圆角
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #F5F5F5;
 }
-
-// 定义滑块 内阴影+圆角
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: #f33;
 }
-
 input[type="button"],
 input[type="submit"],
 input[type="search"],
 input[type="reset"] {
   -webkit-appearance: none;
 }
-
 textarea {
   -webkit-appearance: none;
 }
-
 ::-webkit-input-placeholder {
   /* WebKit browsers */
   color: #dedede;
   text-align: center;
 }
-
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #dedede;
   text-align: center;
 }
-
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #dedede;
   text-align: center;
 }
-
 :-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #dedede;

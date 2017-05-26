@@ -55,27 +55,27 @@
 <style lang="less">
   @import '../../assets/style/mixin';
   .headerNavWrapper{
-    height: 88px;
+    height: .88rem;
   }
   #headerNav {
+    font-size:.12rem;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
     z-index: 999;
-    height:88px;
+    .mx_wh(100%,.88rem);
     .search {
       position: relative;
-      .mx_whlh(100%, 48px, 48px);
+      .mx_whlh(100%,.48rem,.48rem);
       .backgroundRed;
       text-align: center;
       .icon-micro {
-        .mx_fc(22px, #fff);
+        .mx_fc(.22rem, #fff);
         .mx_postl(0, 5%);
       }
       .icon-music {
-        .mx_fc(22px, #fff);
-        .mx_postl(3px, 90%);
+        .mx_fc(.22rem, #fff);
+        .mx_postl(.03rem, 90%);
       }
       .search-box {
         position: relative;
@@ -83,11 +83,11 @@
         width: 70%;
         label {
           color: #dedede;
-          .mx_hlh(32px, 34px);
-          .mx_fc(14px, #dedede);
-          .mx_postl(8px, 22%);
+          .mx_hlh(.32rem, .34rem);
+          .mx_fc(.14rem, #dedede);
+          .mx_postl(0.08rem, 22%);
           span {
-            font-size: 13px;
+            font-size: 0.13rem;
           }
         }
         label:before {

@@ -119,13 +119,13 @@
   #recommend {
     .list-item {
       position: relative;
-      .mx_fc(15px, #333);
-      .mx_whlh(100%, 45px, 45px);
+      .mx_fc(.15rem, #333);
+      .mx_whlh(100%, .45rem, .45rem);
       font-weight: normal;
       b {
-        .mx_hlh(15px, 45px);
-        .mx_bd(1px, #f33);
-        margin-right: 5px;
+        .mx_hlh(.15rem, .45rem);
+        .mx_bd(.01rem, #f33);
+        margin-right: .05rem;
       }
     }
     ul {
@@ -133,21 +133,22 @@
       .mx_flex_content;
       li {
         position: relative;
-        padding-bottom: 10px;
+        padding-bottom: .1rem;
         overflow: hidden;
         img {
           display: block;
           width: 100%;
         }
         p {
-          .mx_hlh(30px, 16px);
-          padding: 5px 6px 0;
-          .mx_fc(12px, #666);
+          .mx_hlh(.3rem, .16rem);
+          padding: .05rem .06rem 0;
+          .mx_fc(.12rem, #666);
         }
       }
     }
     .re-songList,
     .re-BCStation {
+      font-size:0;
       li {
         .mx_flex_item(0 0 33%);
         p {
@@ -158,12 +159,13 @@
     .re-songList {
       li {
         i {
-          .mx_postr(3px, 5px);
-          .mx_fc(12px, #fff);
+          .mx_postr(.03rem, .05rem);
+          .mx_fc(.12rem, #fff);
         }
       }
     }
     .re-PrivateContxt {
+      font-size:0;
       li {
         .mx_flex_item(0 0 49.5%);
         p {
@@ -175,33 +177,34 @@
       }
     }
     .re-PrMV {
+      font-size:0;      
       li {
         .mx_flex_item(0 0 49.5%);
         i {
-          .mx_postr(3px, 5px);
-          .mx_fc(12px, #fff);
+          .mx_postr(.03rem, .05rem);
+          .mx_fc(.12rem, #fff);
         }
         p {
-          .mx_fc(12px, #333);
+          .mx_fc(.12rem, #333);
           .mx_single_ellipsis;
-          .mx_hlh(20px, 20px);
+          .mx_hlh(.2rem, .2rem);
           padding-top: 0;
         }
         span {
-          .mx_fc(12px, #666);
-          padding: 0 3px;
+          .mx_fc(.12rem, #666);
+          padding: 0 .03rem;
         }
       }
     }
     .re-BCStation {
       li {
         span {
-          .mx_fc(12px, #fff);
-          .mx_posbl(48px, 5px);
+          .mx_fc(.12rem, #fff);
+          .mx_posbl(.48rem, .05rem);
         }
         .icon-play {
-          .mx_fc(14px, #fff);
-          .mx_posbr(48px, 5px);
+          .mx_fc(.14rem, #fff);
+          .mx_posbr(.48rem, .05rem);
         }
       }
     }

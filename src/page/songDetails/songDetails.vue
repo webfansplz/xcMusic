@@ -13,6 +13,9 @@
     <div class="playContxt">
       <div class="playContxt-m">
         <span class="play-controler"></span>
+        <div class="cd-wrapper">
+          <div class="cd-masking"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -71,40 +74,67 @@
       }
     }
     .header {
-      .mx_wh(100%, 45px);
+      width: 100%;
       position: relative;
       text-align: center;
       .icon-left {
-        .mx_fc(23px, #fff);
-        .mx_postl(11px, 5%);
+        .mx_fc(.23rem, #fff);
+        .mx_postl(.11rem, 5%);
       }
       p {
-        .mx_whlh(100%, 28px, 28px);
-        .mx_fc(14px, #fff);
+        .mx_whlh(50%, .28rem, .28rem);
+        margin: 0 auto;
+        .mx_single_ellipsis;
+        .mx_fc(.14rem, #fff);
       }
       span {
         display: block;
-        .mx_whlh(100%, 16px, 13px);
-        .mx_fc(10px, #fff);
+        .mx_whlh(100%, .16rem, .13rem);
+        .mx_fc(.1rem, #fff);
       }
       .bar-line {
+        margin-top: .03rem;
         display: block;
         bottom: 0;
         left: 0;
-        .mx_wh(100%, .05rem);
+        .mx_wh(100%, 1px);
         background: radial-gradient(#d3d3d3 -90%, transparent 100%);
       }
     }
     .playContxt {
       .mx_wh(100%, 100%);
       .playContxt-m {
+        overflow: hidden;
         position: relative;
         .mx_wh(80%, 70%);
         margin: 0 auto;
       }
       .play-controler {
+        .mx_postl(-.03rem, 45%);
+        display: block;
+        .mx_wh(.8rem, 1.2rem); // background: url('../../assets/img/playControler.png') 0/contain no-repeat;
+        background: url('../../assets/img/playControler.png') left -.06rem no-repeat;
+        background-size: cover;
+        z-index: 8;
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        -webkit-transform: rotate(-20deg);
+        transform: rotate(-20deg);
 
-        background: url('../../assets/img/playControler.png') left 0/cover no-repeat;
+        background-position-y: -.12rem;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      .cd-wrapper {
+        position: relative;
+        .mx_wh(.24rem,.44rem);
+        padding: .8rem .9rem;
+        border-radius: 50%;
+        background: hsla(0, 0%, 42%, .3);
+        margin: .6rem auto 0;
+      }
+      .cd-masking{
+        .mx_wh(100%,100%);
       }
     }
   }

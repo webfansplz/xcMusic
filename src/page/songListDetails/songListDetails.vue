@@ -78,20 +78,20 @@
     }
     .header-title {
       position: relative;
-      .mx_whlh(100%, 45px, 45px);
-      .mx_fc(16px, #fff);
+      .mx_whlh(100%, .45rem, .45rem);
+      .mx_fc(.16rem, #fff);
       text-align: center;
       .icon-left {
-        .mx_fc(22px, #fff);
+        .mx_fc(.22rem, #fff);
         .mx_postl(0, 5%);
       }
       .icon-music {
-        .mx_fc(22px, #fff);
+        .mx_fc(.22rem, #fff);
         .mx_postr(0, 5%);
       }
     }
     .header-contxt {
-      padding: 10px 5% 0;
+      padding: .1rem 5% 0;
       width: 90%;
       font-size: 0;
     }
@@ -105,12 +105,12 @@
         width: 90%;
       }
       .icon-headset {
-        .mx_postr(5px, 13%);
-        .mx_fc(12px, #fff);
+        .mx_postr(.05rem, 13%);
+        .mx_fc(.12rem, #fff);
       }
       .icon-mxclt {
-        .mx_posbr(5px, 13%);
-        .mx_fc(16px, #fff);
+        .mx_posbr(.05rem, 13%);
+        .mx_fc(.16rem, #fff);
       }
     }
     .header-contxt-r {
@@ -119,12 +119,12 @@
       width: 60%;
       div {
         .mx_whlh(100%, auto, 1);
-        .mx_fc(12px, #fff);
+        .mx_fc(.12rem, #fff);
         align-items: center;
         display: flex;
       }
       p {
-        .mx_fc(16px, #fff);
+        .mx_fc(.16rem, #fff);
         padding: 5% 0;
       }
       img {
@@ -132,57 +132,58 @@
         width: 15%;
       }
       span {
-        padding: 0 5px;
-        .mx_fc(12px, #ccc);
+        padding: 0 .05rem;
+        .mx_fc(.12rem, #ccc);
       }
       .icon-right {
-        .mx_fc(14px, #ccc);
+        .mx_fc(.14rem, #ccc);
       }
     }
     .header-footer {
+      font-size:0;
       text-align: center;
-      padding: 10px 5% 5px;
+      padding: .1rem 5% .05rem;
       .mx_flex;
       span {
         .mx_flex_item(1);
         i {
-          .mx_fc(20px, #fff);
+          .mx_fc(.2rem, #fff);
         }
         p {
-          padding-top: 7px;
-          .mx_fc(12px, #fff);
+          padding-top: .07rem;
+          .mx_fc(.12rem, #fff);
         }
       }
     }
     .songList {
       ul {
         li {
-          .mx_whlh(100%, 40px, 40px);
-          padding: 5px 0;
+          .mx_whlh(100%, .4rem, .4rem);
+          padding: .05rem 0;
           font-size: 0;
           i {
             display: inline-block;
             vertical-align: top;
-            .mx_fc(12px, #666);
-            .mx_whlh(15%, 40px, 40px);
+            .mx_fc(.12rem, #666);
+            .mx_whlh(15%, .4rem, .4rem);
             text-align: center;
           }
           span {
             display: inline-block;
             vertical-align: top;
-            .mx_whlh(85%, 40px, 40px);
+            .mx_whlh(85%, .4rem, .4rem);
             text-align: left;
           }
           p {
-            .mx_fc(14px, #333);
-            .mx_whlh(85%, 20px, 20px);
+            .mx_fc(.14rem, #333);
+            .mx_whlh(85%, .2rem, .2rem);
             .mx_single_ellipsis;
           }
           s {
             display: block;
             text-decoration: none;
-            .mx_fc(12px, #ccc);
-            .mx_whlh(85%, 20px, 20px);
+            .mx_fc(.12rem, #ccc);
+            .mx_whlh(85%, .2rem, .2rem);
           }
         }
       }

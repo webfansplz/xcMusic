@@ -85,30 +85,34 @@
           color: #dedede;
           .mx_hlh(.32rem, .34rem);
           .mx_fc(.14rem, #dedede);
-          .mx_postl(0.08rem, 22%);
+          .mx_postl(.08rem, 22%);
           span {
-            font-size: 0.13rem;
+            font-size: .13rem;
           }
         }
         label:before {
-          margin-right: 5px;
+          margin-right: .05rem;
         }
         input {
-          .mx_whlh(100%, 32px, 24px);
-          .mx_bdrs(20px);
+          .mx_whlh(100%, .32rem, .24rem);
+          .mx_bdrs(.2rem);
           text-indent: 5%;
         }
       }
     }
     .tabNaver {
       .mx_flex;
-      .mx_hlh(40px, 40px);
-      .mx_fc(14px, #666);
+      .mx_hlh(.4rem, .4rem);
+      .mx_fc(.14rem, #666);
       background-color: #fff;
       span {
         .mx_flex_item(1);
         text-align: center;
       }
+    }
+    .vux-tab-item{
+      .mx_fc(.14rem,#666);
+      .mx_hlh(.4rem,.4rem);
     }
   }
 

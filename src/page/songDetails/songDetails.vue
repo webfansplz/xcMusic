@@ -14,7 +14,18 @@
       <div class="playContxt-m">
         <span class="play-controler"></span>
         <div class="cd-wrapper">
-          <div class="cd-masking"></div>
+          <div class="cd-masking">
+          </div>
+          <img :src="songDetails.songs[0].al.picUrl">
+        </div>
+      </div>
+      <div class="playContxt-f">
+        <audio :src="musicUrl" autoplay="autoplay"></audio>
+        <div class="playContxt-btnBox">
+          <span><i class="iconfont icon-forward"></i></span>
+          <span><i class="iconfont icon-play"></i></span>
+          <!--<span><i class="iconfont icon-pause"></i></span>-->
+          <span><i class="iconfont icon-forward"></i></span>
         </div>
       </div>
     </div>
@@ -106,14 +117,14 @@
       .playContxt-m {
         overflow: hidden;
         position: relative;
-        .mx_wh(80%, 70%);
+        .mx_wh(80%, 80%);
         margin: 0 auto;
       }
       .play-controler {
         .mx_postl(-.03rem, 45%);
         display: block;
-        .mx_wh(.8rem, 1.2rem); // background: url('../../assets/img/playControler.png') 0/contain no-repeat;
-        background: url('../../assets/img/playControler.png') left -.06rem no-repeat;
+        .mx_wh(.8rem, 1.2rem);
+        background: url('../../assets/img/play-controler.png') left -.06rem no-repeat;
         background-size: cover;
         z-index: 8;
         -webkit-transform-origin: left top;
@@ -126,15 +137,52 @@
         transform: rotate(0deg);
       }
       .cd-wrapper {
-        position: relative;
-        .mx_wh(.24rem,.44rem);
-        padding: .8rem .9rem;
-        border-radius: 50%;
+        position: relative; // .mx_wh(.24rem,.44rem);
+        .mx_wh(1.6rem,
+        1.6rem);
+        padding: .4rem .4rem;
+        .mx_bdrs(50%);
         background: hsla(0, 0%, 42%, .3);
-        margin: .6rem auto 0;
+        margin: .58rem auto 0;
+        img {
+          display: block;
+          .mx_wh(100%,
+          100%);
+          .mx_bdrs(50%);
+        }
       }
-      .cd-masking{
-        .mx_wh(100%,100%);
+      .cd-masking {
+        .mx_wh(100%,
+        100%);
+        .mx_postl(0,
+        0);
+        background: url('../../assets/img/cd-wrapper.png') 0/contain no-repeat;
+      }
+      .playContxt-btnBox {
+        .mx_wh(2.4rem,
+        0.8rem);
+        .mx_flex;
+        font-size: 0;
+        margin: 0 auto;
+        span {
+          .mx_flex_item(1);
+          .mx_flex_mid;
+          &:nth-child(1) {
+            i {
+              transform: rotate(180deg);
+            }
+          }
+          &:nth-child(2) {
+            i {
+              .mx_fc(0.55rem,
+              #fff);
+            }
+          }
+          i {
+            .mx_fc(0.45rem,
+            #fff);
+          }
+        }
       }
     }
   }

@@ -12,45 +12,41 @@
     </div>
     <div class="playContxt">
       <div class="playContxt-m">
-        <span class="play-controler"></span>
+        <span class="play-controler" :class="{'play-controler-status':playStatus==true}"></span>
         <div class="cd-wrapper">
           <div class="cd-masking">
           </div>
-          <img :src="songDetails.songs[0].al.picUrl">
+          <img :src="songDetails.songs[0].al.picUrl" class="play-animat" :class="{'play-animat-status':playStatus==false}">
         </div>
       </div>
       <div class="playContxt-f">
-        <audio :src="musicUrl" autoplay="autoplay"></audio>
-        <div class="playContxt-btnBox">
-          <span><i class="iconfont icon-forward"></i></span>
-          <span><i class="iconfont icon-play"></i></span>
-          <!--<span><i class="iconfont icon-pause"></i></span>-->
-          <span><i class="iconfont icon-forward"></i></span>
-        </div>
+        <player></player>
       </div>
     </div>
   </div>
 </template>
 <script>
+  import player from './children/player';
   export default {
     name: 'songDetails',
-    components: {},
+    components: {
+      player
+    },
     created() {
-      this.$store.dispatch('get_PlaySongDetails', this.$route.params.id)
+      this.$store.dispatch('get_PlaySongDetails', this.$route.params.id);
     },
     computed: {
       //歌曲详情
       songDetails() {
-        console.log(this.$store.state.playSongs.songDetails)
         return this.$store.state.playSongs.songDetails;
-      },
-      //音乐url
-      musicUrl() {
-        return this.$store.state.playSongs.musicUrl;
       },
       //音乐歌词
       Lyric() {
         return this.$store.state.playSongs.Lyric;
+      },
+      //播放状态
+      playStatus() {
+        return this.$store.state.playSongs.playStatus;
       }
     }
   }
@@ -117,33 +113,49 @@
       .playContxt-m {
         overflow: hidden;
         position: relative;
-        .mx_wh(80%, 80%);
+        .mx_wh(80%, 70%);
         margin: 0 auto;
       }
       .play-controler {
         .mx_postl(-.03rem, 45%);
         display: block;
-        .mx_wh(.8rem, 1.2rem);
+        .mx_wh(1rem, 1.4rem);
         background: url('../../assets/img/play-controler.png') left -.06rem no-repeat;
         background-size: cover;
         z-index: 8;
+        transition: all .3s ease-in;
         -webkit-transform-origin: left top;
         transform-origin: left top;
         -webkit-transform: rotate(-20deg);
         transform: rotate(-20deg);
-
-        background-position-y: -.12rem;
+      }
+      .play-controler-status {
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
+        background-position-y: -.12rem;
+      }
+      .play-animat {
+        animation: playRotate 18s linear infinite;
+      }
+      @keyframes playRotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .play-animat-status {
+        animation-play-state: paused;
       }
       .cd-wrapper {
-        position: relative; // .mx_wh(.24rem,.44rem);
-        .mx_wh(1.6rem,
-        1.6rem);
+        position: relative;
+        .mx_wh(1.8rem,
+        1.8rem);
         padding: .4rem .4rem;
         .mx_bdrs(50%);
         background: hsla(0, 0%, 42%, .3);
-        margin: .58rem auto 0;
+        margin: .75rem auto 0;
         img {
           display: block;
           .mx_wh(100%,
@@ -157,32 +169,6 @@
         .mx_postl(0,
         0);
         background: url('../../assets/img/cd-wrapper.png') 0/contain no-repeat;
-      }
-      .playContxt-btnBox {
-        .mx_wh(2.4rem,
-        0.8rem);
-        .mx_flex;
-        font-size: 0;
-        margin: 0 auto;
-        span {
-          .mx_flex_item(1);
-          .mx_flex_mid;
-          &:nth-child(1) {
-            i {
-              transform: rotate(180deg);
-            }
-          }
-          &:nth-child(2) {
-            i {
-              .mx_fc(0.55rem,
-              #fff);
-            }
-          }
-          i {
-            .mx_fc(0.45rem,
-            #fff);
-          }
-        }
       }
     }
   }

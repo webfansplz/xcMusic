@@ -40,13 +40,13 @@
     <!--推荐歌曲详情内容开始-->
     <div class="songList">
       <ul>
-        <router-link tag="li"  v-for="(item,i) in songListDetails.tracks" :key="i" :to="{name:'songDetails',params:{id:item.id}}">
+        <li v-for="(item,i) in songListDetails.tracks" :key="i" @click="getMusicMsg(item.id)">
           <i>{{i+1}}</i>
           <span class="halfBorder">
             <p>{{item.name}}</p>
             <s>{{item.ar[0].name}}</s>
           </span>
-        </router-link>
+        </li>
       </ul>
     </div>
     <!--推荐歌曲详情内容结束-->
@@ -64,6 +64,17 @@
     computed: {
       songListDetails() {
         return this.$store.state.songListDetails;
+      }
+    },
+    methods: {
+      getMusicMsg(ids) {
+        this.$store.dispatch('get_musicUrl',ids);
+        this.$router.push({
+          name: 'songDetails',
+          params: {
+            id: ids
+          }
+        })
       }
     }
   }
@@ -140,7 +151,7 @@
       }
     }
     .header-footer {
-      font-size:0;
+      font-size: 0;
       text-align: center;
       padding: .1rem 5% .05rem;
       .mx_flex;

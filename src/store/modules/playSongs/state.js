@@ -16,5 +16,5 @@ export default {
   //音乐url
   musicUrl: '',
   //播放状态
-  playStatus:true
+  playStatus:false
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="music">
-    <audio :src="musicUrl" id="musicPlayer"></audio>
+    <audio :src="musicUrl" id="musicPlayer" @canplay="beginAudio"></audio>
   </div>
 </template>
 <script>
@@ -26,16 +26,19 @@
         } else {
           player.pause();
         }
+      },
+      beginAudio() {
+        this.$store.commit('set_playStatus', true);
       }
     },
     watch: {
       playStatus() {
         this.changePlayStatus(this.playStatus);
       },
-      musicUrl(){
-        setTimeout(()=>{
-          this.changePlayStatus(this.playStatus);
-        },1000)
+      musicUrl() {
+        // setTimeout(() => {
+        //   this.changePlayStatus(this.playStatus);
+        // }, 200)
       }
     }
   }

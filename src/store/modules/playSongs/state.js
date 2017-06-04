@@ -15,6 +15,12 @@ export default {
   Lyric: [],
   //音乐url
   musicUrl: '',
+  //判断是否是当前播放歌曲
+  isCurMusic: '',
   //播放状态
-  playStatus:false
+  playStatus: false,
+  //歌曲总时间
+  musicDuration: 0,
+  //歌曲当前时间
+  musicCurtime: 0
 }

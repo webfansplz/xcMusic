@@ -1,9 +1,14 @@
 <template>
   <div id="player">
-    <div class="progress-box"></div>
+    <div class="progress-box">
+      <i class="progress-bar" :style={width:progressWidth}></i>
+      <s class="progress-dot" :style={left:progressWidth}></s>
+      <span class="curTime">{{formatTime(musicCurtime)}}</span>
+      <span class="duration">{{formatTime(musicDuration)}}</span>
+    </div>
     <div class="playContxt-btnBox">
       <span><i class="iconfont icon-forward"></i></span>
-      <span><i class="iconfont" :class="{'icon-pause':isPlay ==true, 'icon-play':isPlay ==false}" @click="togglePlayStatus"></i></span>
+      <span><i class="iconfont" :class="{'icon-pause':playStatus ==true, 'icon-play':playStatus ==false}" @click="togglePlayStatus"></i></span>
       <span><i class="iconfont icon-forward"></i></span>
     </div>
   </div>
@@ -13,8 +18,21 @@
     name: 'player',
     data() {
       return {
-        //切换播放状态
-        isPlay: true
+        progressWidth: 0
+      }
+    },
+    computed: {
+      //播放状态
+      playStatus() {
+        return this.$store.state.playSongs.playStatus;
+      },
+      //歌曲当前时间
+      musicCurtime() {
+        return this.$store.state.playSongs.musicCurtime;
+      },
+      //歌曲总时间
+      musicDuration() {
+        return this.$store.state.playSongs.musicDuration;
       }
     },
     methods: {
@@ -24,12 +42,17 @@
         let second = parseInt(time % 60);
         min < 10 ? min = "0" + min : min;
         second < 10 ? second = "0" + second : second;
-        return min.concat(':') + second;
+        return "" + min + ":" + second + "";
       },
       // 切换播放状态方法
       togglePlayStatus() {
-        this.isPlay = !this.isPlay;
-        this.$store.commit('set_playStatus', this.isPlay);
+        this.$store.commit('set_playStatus', !this.playStatus);
+      }
+    },
+    watch: {
+      musicCurtime() {
+        let per = (this.musicCurtime / this.musicDuration).toFixed(3);
+        this.progressWidth = per * 100 + '%';
       }
     }
   }
@@ -39,7 +62,7 @@
   @import '../../../assets/style/mixin';
   #player {
     .playContxt-btnBox {
-      .mx_wh(2.4rem, 0.8rem);
+      .mx_wh(2.4rem, .8rem);
       .mx_flex;
       font-size: 0;
       margin: 0 auto;
@@ -53,18 +76,45 @@
         }
         &:nth-child(2) {
           i {
-            .mx_fc(0.55rem, #fff);
+            .mx_fc(.55rem, #fff);
           }
         }
         i {
-          .mx_fc(0.45rem, #fff);
+          .mx_fc(.45rem, #fff);
         }
       }
     }
     .progress-box {
-      .mx_wh(70%, 0.03rem);
+      position: relative;
+      .mx_wh(70%, .03rem);
       margin: 0 auto;
       background: radial-gradient(#dedede -180%, transparent 100%);
+      .mx_bdrs(.2rem);
+      .curTime,
+      .duration {
+        display: inline-block;
+        .mx_whlh(.5rem, .12rem, .12rem);
+        .mx_fc(.12rem, #fff);
+        text-align: center;
+      }
+      .curTime {
+        .mx_postl(-.06rem, -.5rem);
+      }
+      .duration {
+        .mx_postr(-.06rem, -.5rem);
+      }
+      .progress-bar {
+        height: 100%;
+        .backgroundRed;
+        .mx_postl(0, 0);
+      }
+      .progress-dot {
+        display: block;
+        .mx_wh(.12rem, .12rem);
+        .mx_bdrs(50%);
+        .mx_postl(-.05rem, 0);
+        .backgroundRed;
+      }
     }
   }
 

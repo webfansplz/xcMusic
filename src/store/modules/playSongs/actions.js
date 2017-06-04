@@ -6,7 +6,7 @@ export default {
       id: payload
     });
     context.commit('set_musicUrl', res.data.data[0].url);
-    // console.log(res.data.data[0].url)
+    context.commit('set_isCurMusic', payload);    
   },
   //获取歌曲详情
   async get_songDetails(context, payload) {
@@ -24,9 +24,6 @@ export default {
     context.dispatch('get_songDetails', {
       ids: payload
     });
-    // context.dispatch('get_musicUrl', {
-    //   id: payload
-    // });
     context.dispatch('get_Lyric', {
       id: payload
     });

@@ -1,8 +1,9 @@
 <template>
   <div id="player">
     <div class="progress-box">
-      <i class="progress-bar" :style={width:progressWidth}></i>
-      <s class="progress-dot" :style={left:progressWidth}></s>
+      <i class="progress-bar" :style={width:progressWidth}>
+        <s class="progress-dot"></s>
+      </i>
       <span class="curTime">{{formatTime(musicCurtime)}}</span>
       <span class="duration">{{formatTime(musicDuration)}}</span>
     </div>
@@ -107,13 +108,14 @@
         height: 100%;
         .backgroundRed;
         .mx_postl(0, 0);
-      }
-      .progress-dot {
-        display: block;
-        .mx_wh(.12rem, .12rem);
-        .mx_bdrs(50%);
-        .mx_postl(-.05rem, 0);
-        .backgroundRed;
+        .progress-dot {
+          display: block;
+          .mx_wh(.12rem, .12rem);
+          .mx_bdrs(50%);
+          .mx_postr(-.05rem, 0);
+          .backgroundRed;
+          transform: translate(50%,0);
+        }
       }
     }
   }

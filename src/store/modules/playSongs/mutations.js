@@ -7,12 +7,6 @@ export default {
   set_musicUrl(state, payload) {
     state.musicUrl = payload;
   },
-  //判断是否是当前播放歌曲
-  set_isCurMusic(state, payload) {
-    if (state.isCurMusic != payload) {
-      state.isCurMusic = payload;
-    }
-  },
   //设置歌曲总时间
   set_musicDuration(state, payload) {
     state.musicDuration = payload;

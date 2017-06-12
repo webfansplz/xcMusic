@@ -113,6 +113,7 @@
           .mx_wh(.12rem, .12rem);
           .mx_bdrs(50%);
           .mx_postr(-.05rem, 0);
+          z-index:888;
           .backgroundRed;
           transform: translate(50%,0);
         }

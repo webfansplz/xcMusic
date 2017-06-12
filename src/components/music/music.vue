@@ -1,6 +1,6 @@
 <template>
   <div id="music">
-    <audio :src="playUrl" id="musicPlayer" @canplay="beginAudio"></audio>
+    <audio id="musicPlayer"></audio>
   </div>
 </template>
 <script>
@@ -8,11 +8,10 @@
     name: 'music',
     data() {
       return {
-        playUrl: '',
-        Timing: null
+        Timing: null,
+        curMusic: ''
       }
     },
-    created() {},
     computed: {
       //音乐url
       musicUrl() {
@@ -34,12 +33,14 @@
         let player = document.getElementById('musicPlayer');
         if (status == true) {
           player.play();
+          this.$store.commit('set_playStatus', true);
         } else {
           player.pause();
+          this.$store.commit('set_playStatus', false);
         }
-        this.$store.commit('set_musicDuration', player.duration);
         this.Timing = setInterval(() => {
           this.$store.commit('set_musicCurtime', player.currentTime);
+          this.$store.commit('set_musicDuration', player.duration);
           if (player.duration == player.currentTime) {
             clearInterval(this.Timing);
             player.pause();
@@ -47,20 +48,21 @@
             this.$store.commit('set_musicCurtime', 0);
           }
         }, 1000);
-      },
-      beginAudio() {
-        this.$store.commit('set_playStatus', true);
       }
     },
     watch: {
       playStatus() {
         this.changePlayStatus(this.playStatus);
       },
-      isCurMusic() {
-        this.playUrl = this.musicUrl;
-        setTimeout(() => {
+      musicUrl() {
+        if (this.curMusic == '') {
+          document.getElementById('musicPlayer').src = this.musicUrl;
+          this.curMusic = this.$route.params.id;
+        } else if (this.$route.params.id != this.curMusic) {
+          document.getElementById('musicPlayer').src = this.musicUrl;
           this.changePlayStatus(true);
-        }, 800)
+          this.curMusic = this.$route.params.id;
+        }
       }
     }
   }

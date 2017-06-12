@@ -6,7 +6,6 @@ export default {
       id: payload
     });
     context.commit('set_musicUrl', res.data.data[0].url);
-    context.commit('set_isCurMusic', payload);    
   },
   //获取歌曲详情
   async get_songDetails(context, payload) {

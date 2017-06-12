@@ -208,6 +208,9 @@
         }
       }
     }
+    .vux-indicator{
+      font-size:0;
+    }
   }
 
 </style>

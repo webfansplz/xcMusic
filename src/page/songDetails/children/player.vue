@@ -1,6 +1,7 @@
 <template>
   <div id="player">
     <div class="progress-box">
+      <div class="schedule" @click="changeProgress" ref="schedule"></div>
       <i class="progress-bar" :style={width:progressWidth}>
         <s class="progress-dot"></s>
       </i>
@@ -48,6 +49,13 @@
       // 切换播放状态方法
       togglePlayStatus() {
         this.$store.commit('set_playStatus', !this.playStatus);
+      },
+      //改变歌曲进度
+      changeProgress(event) {
+        let ev = event || window.event;
+        let num = parseInt((ev.offsetX / this.$refs.schedule.clientWidth) * this.musicDuration);
+        // this.$store.commit('set_musicCurtime', num);
+        document.getElementById('musicPlayer').currentTime = num;
       }
     },
     watch: {
@@ -113,10 +121,15 @@
           .mx_wh(.12rem, .12rem);
           .mx_bdrs(50%);
           .mx_postr(-.05rem, 0);
-          z-index:888;
+          z-index: 888;
           .backgroundRed;
-          transform: translate(50%,0);
+          transform: translate(50%, 0);
         }
+      }
+      .schedule {
+        .mx_wh(100%, 100%);
+        .mx_postl(0, 0);
+        z-index: 8888;
       }
     }
   }

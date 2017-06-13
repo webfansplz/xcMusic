@@ -9,6 +9,7 @@ const songListDetails = r => require.ensure([], () => r(require('../page/songLis
 //歌曲详情
 const songDetails = r => require.ensure([], () => r(require('../page/songDetails/songDetails')), 'songDetails')
 export default new Router({
+  // mode: 'history',
   routes: [{
       path: '/',
       redirect: '/recommend'
@@ -21,10 +22,20 @@ export default new Router({
       path: '/songListDetails/:id',
       name: 'songListDetails',
       component: songListDetails
-    },{
-      path:'/songDetails/:id',
-      name:'songDetails',
-      component:songDetails
+    }, {
+      path: '/songDetails/:id',
+      name: 'songDetails',
+      component: songDetails
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return {
+        x: 0,
+        y: 0
+      }
+    }
+  }
 })

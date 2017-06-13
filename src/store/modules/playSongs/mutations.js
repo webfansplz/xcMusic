@@ -7,6 +7,10 @@ export default {
   set_musicUrl(state, payload) {
     state.musicUrl = payload;
   },
+  //设置当前播放音乐
+  set_curMusic(state, payload) {
+    state.curMusic = payload;
+  },
   //设置歌曲总时间
   set_musicDuration(state, payload) {
     state.musicDuration = payload;

@@ -20,5 +20,7 @@ export default {
   //歌曲总时间
   musicDuration: 0,
   //歌曲当前时间
-  musicCurtime: 0
+  musicCurtime: 0,
+  //是否当前音乐
+  curMusic: ''
 }

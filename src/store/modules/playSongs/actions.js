@@ -5,7 +5,12 @@ export default {
     let res = await getData('queryMusicUrl', {
       id: payload
     });
-    context.commit('set_musicUrl', res.data.data[0].url);
+    //判断是否更新音乐url
+    if (context.state.curMusic == '' || context.state.curMusic != payload) {
+      context.commit('set_musicUrl', res.data.data[0].url);
+      context.commit('set_curMusic', payload);
+      context.commit('set_playStatus', true);
+    }
   },
   //获取歌曲详情
   async get_songDetails(context, payload) {
@@ -20,6 +25,7 @@ export default {
   },
   //获取歌曲播放所需接口
   async get_PlaySongDetails(context, payload) {
+    // context.dispatch('get_musicUrl', payload);
     context.dispatch('get_songDetails', {
       ids: payload
     });

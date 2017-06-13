@@ -68,7 +68,7 @@
     },
     methods: {
       getMusicMsg(ids) {
-        this.$store.dispatch('get_musicUrl',ids);
+        this.$store.dispatch('get_musicUrl', ids);
         this.$router.push({
           name: 'songDetails',
           params: {

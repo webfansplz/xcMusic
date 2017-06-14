@@ -52,20 +52,14 @@
       },
       // 切换播放状态方法
       togglePlayStatus() {
-        this.min = this.musicCurtime;
         this.$store.commit('set_playStatus', !this.playStatus);
       },
       //改变歌曲进度
       changeProgress(val) {
-        // let ev = event || window.event;
-        // let num = ev.touches[0].clientX - ev.target.parentNode.offsetLeft;
-        // let max = ev.target.parentNode.offsetWidth;
-        // num > max ? num = max : num;
-        // num < 0 ? num = 0 : num;
-        let num = (val/100) * this.musicDuration;
-        console.log(num);
-        // let res = parseInt((num / max) * this.musicDuration);
-        // document.getElementById('musicPlayer').currentTime = res;
+        let num = val * this.musicDuration / 100;
+        if (Math.abs(parseInt(num) - parseInt(this.musicCurtime)) > 3) {
+          document.getElementById('musicPlayer').currentTime = num;
+        }
       }
     },
     watch: {

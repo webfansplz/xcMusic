@@ -47,6 +47,16 @@
         } else {
           this.$refs.player.pause();
         }
+      },
+      musicUrl() {
+        if (this.playStatus == true) {
+          this.$nextTick(() => {
+            this.$refs.player.play();
+            this.$store.commit('set_musicDuration', this.$refs.player.duration);
+          })
+        } else {
+          this.$refs.player.pause();
+        }
       }
     }
   }

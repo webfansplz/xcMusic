@@ -1,15 +1,13 @@
 <template>
   <div id="music">
-    <audio id="musicPlayer" :src="musicUrl" @canplay="setDuration" @timeupdate='setCurTime' @ended="initMusicStatus" ref="player"></audio>
+    <audio id="musicPlayer" :src="musicUrl" @canplay="playMusic" @timeupdate='setCurTime' @ended="initMusicStatus" ref="player"></audio>
   </div>
 </template>
 <script>
   export default {
     name: 'music',
     data() {
-      return {
-        Timing: null
-      }
+      return {}
     },
     computed: {
       //音乐url
@@ -22,15 +20,16 @@
       }
     },
     methods: {
+      //播放音乐
       playMusic() {
-        this.$store.dispatch('setMusicStatus', true);
-      },
-      setDuration() {
+        this.$store.commit('set_playStatus', true);
         this.$store.commit('set_musicDuration', this.$refs.player.duration);
       },
+      //更新播放时间
       setCurTime() {
         this.$store.commit('set_musicCurtime', this.$refs.player.currentTime);
       },
+      //播放完成格式化
       initMusicStatus() {
         this.$refs.player.pause();
         this.$store.commit('set_playStatus', false);
@@ -38,11 +37,12 @@
       }
     },
     watch: {
+      //监听播放状态来触发歌曲播放/暂停
       playStatus(state) {
         if (state == true) {
           this.$nextTick(() => {
             this.$refs.player.play();
-            alert(this.$refs.player)
+            this.$store.commit('set_musicDuration', this.$refs.player.duration);
           })
         } else {
           this.$refs.player.pause();

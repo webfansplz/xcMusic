@@ -1,12 +1,9 @@
 <template>
   <div id="player">
-    <div class="progress-box">
-      <div class="schedule" @click="changeProgress" ref="schedule"></div>
-      <i class="progress-bar" :style={width:progressWidth}>
-        <s class="progress-dot"></s>
-      </i>
-      <span class="curTime">{{formatTime(musicCurtime)}}</span>
-      <span class="duration">{{formatTime(musicDuration)}}</span>
+    <div class="player-progress">
+      <range v-model="progressWidth" :rangeBarHeight="3" :step="step" @on-change="changeProgress"></range>
+      <span class="range-start">{{formatTime(musicCurtime)}}</span>
+      <span class="range-end">{{formatTime(musicDuration)}}</span>
     </div>
     <div class="playContxt-btnBox">
       <span><i class="iconfont icon-forward"></i></span>
@@ -16,12 +13,19 @@
   </div>
 </template>
 <script>
+  import {
+    Range
+  } from 'vux'
   export default {
     name: 'player',
     data() {
       return {
-        progressWidth: 0
+        progressWidth: 0,
+        step: 1 / 10
       }
+    },
+    components: {
+      Range
     },
     computed: {
       //播放状态
@@ -48,20 +52,26 @@
       },
       // 切换播放状态方法
       togglePlayStatus() {
+        this.min = this.musicCurtime;
         this.$store.commit('set_playStatus', !this.playStatus);
       },
       //改变歌曲进度
-      changeProgress(event) {
-        let ev = event || window.event;
-        let num = parseInt((ev.offsetX / this.$refs.schedule.clientWidth) * this.musicDuration);
-        // this.$store.commit('set_musicCurtime', num);
-        document.getElementById('musicPlayer').currentTime = num;
+      changeProgress(val) {
+        // let ev = event || window.event;
+        // let num = ev.touches[0].clientX - ev.target.parentNode.offsetLeft;
+        // let max = ev.target.parentNode.offsetWidth;
+        // num > max ? num = max : num;
+        // num < 0 ? num = 0 : num;
+        let num = (val/100) * this.musicDuration;
+        console.log(num);
+        // let res = parseInt((num / max) * this.musicDuration);
+        // document.getElementById('musicPlayer').currentTime = res;
       }
     },
     watch: {
       musicCurtime() {
-        let per = (this.musicCurtime / this.musicDuration).toFixed(3);
-        this.progressWidth = per * 100 + '%';
+        let per = (this.musicCurtime / this.musicDuration).toFixed(2);
+        this.progressWidth = per * 100;
       }
     }
   }
@@ -93,43 +103,42 @@
         }
       }
     }
-    .progress-box {
+    .player-progress {
+      .mx_wh(100%, auto);
+      position: relative;
+    }
+    .vux-range-input-box {
+      margin: 0 !important;
+    }
+    .range-start,
+    .range-end {
+      display: inline-block;
+      .mx_whlh(.5rem, .12rem, .12rem);
+      .mx_fc(.12rem, #fff);
+      text-align: center;
+    }
+    .range-start {
+      .mx_postl(-.06rem, 0);
+    }
+    .range-end {
+      .mx_postr(-.06rem, 0);
+    }
+    .range-bar {
       position: relative;
       .mx_wh(70%, .03rem);
       margin: 0 auto;
       background: radial-gradient(#dedede -180%, transparent 100%);
       .mx_bdrs(.2rem);
-      .curTime,
-      .duration {
-        display: inline-block;
-        .mx_whlh(.5rem, .12rem, .12rem);
-        .mx_fc(.12rem, #fff);
-        text-align: center;
+      .range-min,
+      .range-max {
+        font-size: 0;
       }
-      .curTime {
-        .mx_postl(-.06rem, -.5rem);
-      }
-      .duration {
-        .mx_postr(-.06rem, -.5rem);
-      }
-      .progress-bar {
-        height: 100%;
+      .range-quantity {
         .backgroundRed;
-        .mx_postl(0, 0);
-        .progress-dot {
-          display: block;
-          .mx_wh(.12rem, .12rem);
-          .mx_bdrs(50%);
-          .mx_postr(-.05rem, 0);
-          z-index: 888;
-          .backgroundRed;
-          transform: translate(50%, 0);
-        }
       }
-      .schedule {
-        .mx_wh(100%, 100%);
-        .mx_postl(0, 0);
-        z-index: 8888;
+      .range-handle {
+        .mx_wh(.15rem, .15rem);
+        top: -.075rem !important;
       }
     }
   }

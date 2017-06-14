@@ -87,6 +87,6 @@
   },
   "browserslist": [
     "iOS >= 8",
-     "Android >= 4.1"
+    "Android >= 4.1"
   ]
 }

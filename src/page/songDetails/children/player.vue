@@ -20,7 +20,7 @@
     name: 'player',
     data() {
       return {
-        progressWidth: 0
+    
       }
     },
     computed: {
@@ -35,6 +35,11 @@
       //歌曲总时间
       musicDuration() {
         return this.$store.state.playSongs.musicDuration;
+      },
+      //进度条长度
+      progressWidth() {
+        let per = (this.musicCurtime / this.musicDuration).toFixed(3);
+        return per * 100 + '%';
       }
     },
     methods: {
@@ -61,16 +66,11 @@
         num = num / max * this.musicDuration.toFixed(3);
         document.getElementById('musicPlayer').currentTime = num;
       }
-    },
-    watch: {
-      musicCurtime() {
-        let per = (this.musicCurtime / this.musicDuration).toFixed(3);
-        this.progressWidth = per * 100 + '%';
-      }
     }
   }
 
 </script>
 <style lang="less">
   @import '../songDetails';
+
 </style>

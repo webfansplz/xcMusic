@@ -1,7 +1,8 @@
 <template>
   <div id="player">
     <div class="player-progress">
-      <range v-model="progressWidth" :rangeBarHeight="3" :step="step" @on-change="changeProgress"></range>
+      <range v-model="progressWidth" :rangeBarHeight="3" :step="step"></range>
+       <!--@on-change="changeProgress"-->
       <span class="range-start">{{formatTime(musicCurtime)}}</span>
       <span class="range-end">{{formatTime(musicDuration)}}</span>
     </div>

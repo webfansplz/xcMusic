@@ -26,6 +26,7 @@
         this.$store.dispatch('setMusicStatus', true);
       },
       setDuration() {
+        this.$store.commit('set_playStatus', true);
         this.$store.commit('set_musicDuration', this.$refs.player.duration);
       },
       setCurTime() {
@@ -42,7 +43,6 @@
         if (state == true) {
           this.$nextTick(() => {
             this.$refs.player.play();
-            alert(this.$refs.player)
           })
         } else {
           this.$refs.player.pause();

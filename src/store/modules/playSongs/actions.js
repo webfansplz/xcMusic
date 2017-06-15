@@ -9,7 +9,6 @@ export default {
     if (context.state.curMusic == '' || context.state.curMusic != payload) {
       context.commit('set_musicUrl', res.data.data[0].url);
       context.commit('set_curMusic', payload);
-      context.commit('set_playStatus', true);
     }
   },
   //获取歌曲详情

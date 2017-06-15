@@ -1,7 +1,7 @@
 <template>
   <div id="player">
     <div class="progress-box">
-      <div class="schedule" @click="changeProgress" ref="schedule"></div>
+      <div class="schedule" @touchmove="changeProgress" ref="schedule" @touchstart="changeProgress"></div>
       <i class="progress-bar" :style={width:progressWidth}>
         <s class="progress-dot"></s>
       </i>
@@ -53,8 +53,12 @@
       //改变歌曲进度
       changeProgress(event) {
         let ev = event || window.event;
-        let num = parseInt((ev.offsetX / this.$refs.schedule.clientWidth) * this.musicDuration);
-        // this.$store.commit('set_musicCurtime', num);
+        ev.preventDefault();
+        let num = event.touches[0].clientX - event.target.parentNode.offsetLeft;
+        let max = event.target.parentNode.offsetWidth;
+        num > max ? num = max : num;
+        num < 0 ? num = 0 : num;
+        num =num/max *this.musicDuration.toFixed(3);
         document.getElementById('musicPlayer').currentTime = num;
       }
     },
@@ -116,6 +120,7 @@
         height: 100%;
         .backgroundRed;
         .mx_postl(0, 0);
+        // -webkit-overflow-scrolling: touch;
         .progress-dot {
           display: block;
           .mx_wh(.12rem, .12rem);
@@ -124,12 +129,14 @@
           z-index: 888;
           .backgroundRed;
           transform: translate(50%, 0);
+          // -webkit-overflow-scrolling: touch;
         }
       }
       .schedule {
-        .mx_wh(100%, 100%);
-        .mx_postl(0, 0);
+        .mx_wh(100%, 400%);
+        .mx_postl(-200%, 0);
         z-index: 8888;
+        // -webkit-overflow-scrolling: touch;
       }
     }
   }

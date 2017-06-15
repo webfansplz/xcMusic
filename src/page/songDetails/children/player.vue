@@ -58,7 +58,7 @@
         let max = event.target.parentNode.offsetWidth;
         num > max ? num = max : num;
         num < 0 ? num = 0 : num;
-        num =num/max *this.musicDuration.toFixed(3);
+        num = num / max * this.musicDuration.toFixed(3);
         document.getElementById('musicPlayer').currentTime = num;
       }
     },
@@ -72,73 +72,5 @@
 
 </script>
 <style lang="less">
-  @import '../../../assets/style/mixin';
-  #player {
-    .playContxt-btnBox {
-      .mx_wh(2.4rem, .8rem);
-      .mx_flex;
-      font-size: 0;
-      margin: 0 auto;
-      span {
-        .mx_flex_item(1);
-        .mx_flex_mid;
-        &:nth-child(1) {
-          i {
-            transform: rotate(180deg);
-          }
-        }
-        &:nth-child(2) {
-          i {
-            .mx_fc(.55rem, #fff);
-          }
-        }
-        i {
-          .mx_fc(.45rem, #fff);
-        }
-      }
-    }
-    .progress-box {
-      position: relative;
-      .mx_wh(70%, .03rem);
-      margin: 0 auto;
-      background: radial-gradient(#dedede -180%, transparent 100%);
-      .mx_bdrs(.2rem);
-      .curTime,
-      .duration {
-        display: inline-block;
-        .mx_whlh(.5rem, .12rem, .12rem);
-        .mx_fc(.12rem, #fff);
-        text-align: center;
-      }
-      .curTime {
-        .mx_postl(-.06rem, -.5rem);
-      }
-      .duration {
-        .mx_postr(-.06rem, -.5rem);
-      }
-      .progress-bar {
-        height: 100%;
-        .backgroundRed;
-        .mx_postl(0, 0);
-        // -webkit-overflow-scrolling: touch;
-        .progress-dot {
-          display: block;
-          .mx_wh(.12rem, .12rem);
-          .mx_bdrs(50%);
-          .mx_postr(-.05rem, 0);
-          z-index: 888;
-          .backgroundRed;
-          transform: translate(50%, 0);
-          // -webkit-overflow-scrolling: touch;
-        }
-      }
-      .schedule {
-        .mx_wh(100%, 400%);
-        .mx_postl(-200%, 0);
-        z-index: 8888;
-        // -webkit-overflow-scrolling: touch;
-      }
-    }
-  }
-
+  @import '../songDetails';
 </style>

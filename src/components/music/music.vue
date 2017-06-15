@@ -1,6 +1,7 @@
 <template>
   <div id="music">
-    <audio id="musicPlayer" :src="musicUrl" @canplay="setDuration" @timeupdate='setCurTime' @ended="initMusicStatus" ref="player"></audio>
+    <audio id="musicPlayer" :src="musicUrl" @timeupdate='setCurTime' @ended="initMusicStatus" @durationchange="setDuration" ref="player"></audio>
+    <!--@canplay="setDuration"-->
   </div>
 </template>
 <script>
@@ -22,9 +23,6 @@
       }
     },
     methods: {
-      playMusic() {
-        this.$store.dispatch('setMusicStatus', true);
-      },
       setDuration() {
         this.$store.commit('set_playStatus', true);
         this.$store.commit('set_musicDuration', this.$refs.player.duration);
@@ -36,6 +34,9 @@
         this.$refs.player.pause();
         this.$store.commit('set_playStatus', false);
         this.$store.commit('set_musicCurtime', 0);
+      },
+      setDuration() {
+        this.$store.commit('set_musicDuration', this.$refs.player.duration);
       }
     },
     watch: {

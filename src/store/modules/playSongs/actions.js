@@ -19,16 +19,7 @@ export default {
   //获取音乐歌词
   async get_Lyric(context, payload) {
     let res = await getData('queryLyric', payload);
-    context.commit('set_Lyric', res.data.lrc.lyric);
-    // 第一步先用换行符转为数组
-    // console.log((res.data.lrc.lyric).split('\n'))
-    let ary = (res.data.lrc.lyric).split('\n');
-    //遍历该数组将时间与歌词分离
-    for(let i =0;i<ary.length;i++){
-      ary[i] = ary[i].split(']');
-    }
-    console.log(ary)
-    // console.log(res.data.lrc.lyric)
+      context.commit('set_Lyric', res.data.lrc.lyric);
   },
   //获取歌曲播放所需接口
   async get_PlaySongDetails(context, payload) {

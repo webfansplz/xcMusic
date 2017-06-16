@@ -22,15 +22,40 @@ export default {
           }
         }
       }
-      if (ary.length > 0 && ary[0].length == 2) {
-        for (let j = 0; j < ary.length; j++) {
-          ary[j][0] = this.formatLyricTime(ary[j][0]);
+      if (ary.length > 0 && ary[0].length == 1) {
+        let noLyBox = [
+          ['[00:00.00', '获取歌词失败!']
+        ];
+        noLyBox[0][0] = this.formatLyricTime(noLyBox[0][0]);
+        console.log(noLyBox)
+        return noLyBox;
+      }
+      console.log(ary)
+      for (let i = 0; i < ary.length; i++) {
+        for (let j = 0; j < ary[i].length; j++) {
+          if (ary[i][j].indexOf('[') >= 0) {
+            ary[i][j] = this.formatLyricTime(ary[i][j]);
+          }
         }
-        return ary;
-      } 
-      // else if (ary.length > 0 && ary[0].length != 2) {
-      //   return '[00:00.00]获取歌词失败!';
-      // }
+      }
+      let arys = [];
+      for (let i = 0; i < ary.length; i++) {
+        if (ary[i].length == 2) {
+          arys.push(ary[i]);
+        } else if (ary[i].length >= 3) {
+          for (let j = 0; j < ary[i].length - 1; j++) {
+            let itemBox = [];
+            itemBox[0] = ary[i][j];
+            itemBox[1] = ary[i][ary[i].length - 1];
+            arys.push(itemBox);
+          }
+        }
+      }
+      arys.sort((a, b) => {
+        return a[0] - b[0];
+      })
+      console.log(arys)
+      return arys;
     }
   },
   //格式化歌词时间
@@ -59,7 +84,7 @@ export default {
   //计算歌词动画位置
   compLyricPos(val, box) {
     if (box[0][1]) {
-      if (box[0][1] == "获取歌词失败" || box[0][1] == "歌词加载中") {
+      if (box[0][1] == "获取歌词失败!" || box[0][1] == "歌词加载中!") {
         return 1.8 + 'rem';
       }
     }

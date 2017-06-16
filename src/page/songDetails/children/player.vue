@@ -58,7 +58,7 @@
       //改变歌曲进度
       changeProgress(event) {
         let ev = event || window.event;
-        ev.preventDefault();
+        // ev.preventDefault();
         let num = event.touches[0].clientX - event.target.parentNode.offsetLeft;
         let max = event.target.parentNode.offsetWidth;
         num > max ? num = max : num;

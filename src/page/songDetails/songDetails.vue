@@ -8,13 +8,13 @@
     </div>
     <div class="playContxt">
       <div class="playContxt-m">
-        <!--<span class="play-controler" :class="{'play-controler-status':playStatus==true}"></span>
-        <div class="cd-wrapper">
+        <span class="play-controler" :class="{'play-controler-status':playStatus==true}" v-if="showLyric == false"></span>
+        <div class="cd-wrapper" @click="showLyric = true" v-if="showLyric == false">
           <div class="cd-masking">
           </div>
           <img :src="songDetails.songs[0].al.picUrl" class="play-animat" :class="{'play-animat-status':playStatus==false}">
-        </div>-->
-        <div class="LyricBox">
+        </div>
+        <div class="LyricBox" v-if="showLyric == true" @click="showLyric = false">
           <ul :style="{marginTop:format.compLyricPos(musicCurtime,Lyric)}">
             <li v-for="(item,i) in Lyric" :key="i" :class="{highBright:format.formatLyrichighBright(musicCurtime,Lyric,i)}">{{item[1]}}</li>
           </ul>
@@ -34,6 +34,11 @@
   import player from './children/player';
   export default {
     name: 'songDetails',
+    data() {
+      return {
+        showLyric: false
+      }
+    },
     components: {
       player
     },

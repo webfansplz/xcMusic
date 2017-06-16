@@ -12,7 +12,7 @@ export default {
     }]
   },
   //音乐歌词
-  Lyric: '',
+  Lyric: '[00:00.00]歌词加载中!',
   //音乐url
   musicUrl: '',
   //播放状态

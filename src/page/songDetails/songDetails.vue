@@ -51,6 +51,7 @@
       },
       //音乐歌词
       Lyric() {
+        // console.log(this.format.formatLyric(this.$store.state.playSongs.Lyric))
         return this.format.formatLyric(this.$store.state.playSongs.Lyric);
       },
       //播放状态

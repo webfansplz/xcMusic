@@ -19,7 +19,11 @@ export default {
   //获取音乐歌词
   async get_Lyric(context, payload) {
     let res = await getData('queryLyric', payload);
+    if (res.data.lrc != undefined) {
       context.commit('set_Lyric', res.data.lrc.lyric);
+    } else {
+      context.commit('set_Lyric', '[00:00.00]获取歌词失败!');
+    }
   },
   //获取歌曲播放所需接口
   async get_PlaySongDetails(context, payload) {

@@ -22,13 +22,15 @@ export default {
           }
         }
       }
-      console.log(ary)
-      if (ary.length > 0 && ary[0].length < 3) {
+      if (ary.length > 0 && ary[0].length == 2) {
         for (let j = 0; j < ary.length; j++) {
           ary[j][0] = this.formatLyricTime(ary[j][0]);
         }
-      }
-      return ary;
+        return ary;
+      } 
+      // else if (ary.length > 0 && ary[0].length != 2) {
+      //   return '[00:00.00]获取歌词失败!';
+      // }
     }
   },
   //格式化歌词时间
@@ -56,11 +58,18 @@ export default {
   },
   //计算歌词动画位置
   compLyricPos(val, box) {
-    for (let i = 0; i < box.length; i++) {
-      if (val >= box[i][0] && val <= box[i + 1][0]) {
-        return 1.8 - .3 * i + 'rem';
-      } else if (val >= box[box.length - 1][0]) {
-        return 1.8 - .3 * (box.length - 1) + 'rem';
+    if (box[0][1]) {
+      if (box[0][1] == "获取歌词失败" || box[0][1] == "歌词加载中") {
+        return 1.8 + 'rem';
+      }
+    }
+    if (box.length > 1) {
+      for (let i = 0; i < box.length; i++) {
+        if (val >= box[i][0] && val <= box[i + 1][0]) {
+          return 1.8 - .3 * i + 'rem';
+        } else if (val >= box[box.length - 1][0]) {
+          return 1.8 - .3 * (box.length - 1) + 'rem';
+        }
       }
     }
   }

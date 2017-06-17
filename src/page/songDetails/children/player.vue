@@ -9,20 +9,17 @@
       <span class="duration">{{formatTime(musicDuration)}}</span>
     </div>
     <div class="playContxt-btnBox">
-      <span><i class="iconfont icon-forward"></i></span>
+      <span><i class="iconfont icon-songList"></i></span>
+      <span @click="goPrevSongs"><i class="iconfont icon-forward"></i></span>
       <span><i class="iconfont" :class="{'icon-pause':playStatus ==true, 'icon-play':playStatus ==false}" @click="togglePlayStatus"></i></span>
-      <span><i class="iconfont icon-forward"></i></span>
+      <span @click="goNextSongs"><i class="iconfont icon-forward"></i></span>
+      <span @click="openSongList"><i class="iconfont icon-songList"></i></span>
     </div>
   </div>
 </template>
 <script>
   export default {
     name: 'player',
-    data() {
-      return {
-    
-      }
-    },
     computed: {
       //播放状态
       playStatus() {
@@ -43,6 +40,42 @@
       }
     },
     methods: {
+      //上一曲
+      goPrevSongs() {
+        let obj = {
+          id: this.$route.params.id,
+          type: 'prev'
+        }
+        this.$store.dispatch('go_SwitchSongs', obj).then((res) => {
+          this.$store.dispatch('get_PlaySongDetails', res);
+          this.$router.push({
+            name: 'songDetails',
+            params: {
+              id: res
+            }
+          })
+        });
+      },
+      //下一曲
+      goNextSongs() {
+        let obj = {
+          id: this.$route.params.id,
+          type: 'next'
+        }
+        this.$store.dispatch('go_SwitchSongs', obj).then((res) => {
+          this.$store.dispatch('get_PlaySongDetails', res);
+          this.$router.push({
+            name: 'songDetails',
+            params: {
+              id: res
+            }
+          })
+        });
+      },
+      //打开底部播放列表
+      openSongList() {
+        this.$store.commit('set_songListStatus', true);
+      },
       // 格式化时间
       formatTime(time) {
         let min = parseInt(time / 60);

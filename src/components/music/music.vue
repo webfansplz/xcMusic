@@ -46,6 +46,7 @@
       playStatus(state) {
         if (state == true) {
           this.$nextTick(() => {
+            console.log(123)
             this.$refs.player.play();
           })
         } else {

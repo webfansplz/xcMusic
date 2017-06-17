@@ -79,7 +79,7 @@
             .mx_fc(.14rem, #999);
             margin-bottom: .1rem;
             height: .2rem;
-             .mx_single_ellipsis;
+            .mx_single_ellipsis;
           }
           .highBright {
             color: #fff;
@@ -161,22 +161,28 @@
     }
     #player {
       .playContxt-btnBox {
-        .mx_wh(2.4rem,
+        .mx_wh(100%,
         .8rem);
         .mx_flex;
-        font-size: 0;
-        margin: 0 auto;
+        margin-top: .15rem;
+        font-size: 0; // margin: 0 auto;
         span {
           .mx_flex_item(1);
           .mx_flex_mid;
-          &:nth-child(1) {
+          &:nth-child(1),
+          &:nth-child(5) {
+            i {
+              .mx_fc(.4rem,#fff);
+            }
+          }
+          &:nth-child(2) {
             i {
               -webkit-transform: rotate(180deg);
               -ms-transform: rotate(180deg);
               transform: rotate(180deg);
             }
           }
-          &:nth-child(2) {
+          &:nth-child(3) {
             i {
               .mx_fc(.55rem,
               #fff);

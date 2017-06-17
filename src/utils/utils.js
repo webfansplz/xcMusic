@@ -27,10 +27,8 @@ export default {
           ['[00:00.00', '获取歌词失败!']
         ];
         noLyBox[0][0] = this.formatLyricTime(noLyBox[0][0]);
-        console.log(noLyBox)
         return noLyBox;
       }
-      console.log(ary)
       for (let i = 0; i < ary.length; i++) {
         for (let j = 0; j < ary[i].length; j++) {
           if (ary[i][j].indexOf('[') >= 0) {
@@ -54,7 +52,6 @@ export default {
       arys.sort((a, b) => {
         return a[0] - b[0];
       })
-      console.log(arys)
       return arys;
     }
   },

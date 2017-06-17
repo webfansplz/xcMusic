@@ -22,5 +22,7 @@ export default {
   //歌曲当前时间
   musicCurtime: 0,
   //是否当前音乐
-  curMusic: ''
+  curMusic: '',
+  //底部播放列表开关
+  songListStatus: false
 }

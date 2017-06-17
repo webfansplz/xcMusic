@@ -28,10 +28,12 @@
       <div class="cover-bg" :style="{backgroundImage:'url('+songDetails.songs[0].al.picUrl+')'}"></div>
       <div class="cover-masking"></div>
     </div>
+    <bottomSongList></bottomSongList>
   </div>
 </template>
 <script>
   import player from './children/player';
+  import bottomSongList from '../../components/bottomSongList/bottomSongList';
   export default {
     name: 'songDetails',
     data() {
@@ -40,7 +42,8 @@
       }
     },
     components: {
-      player
+      player,
+      bottomSongList
     },
     created() {
       this.$store.dispatch('get_PlaySongDetails', this.$route.params.id);

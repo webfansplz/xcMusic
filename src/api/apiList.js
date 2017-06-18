@@ -14,14 +14,22 @@ const apiList = {
   //推荐MV{个性推荐}
   queryPrMv: "/personalized/mv",
   //主播电台{个性推荐}
-  queryPrBCStation: "/personalized/djprogram",
+  queryPrBCStation: "/personalized/djprogram", 
+  //精品歌单{歌单}
+  queryHighquality: "/top/playlist/highquality",
+  //歌单{歌单}
+  queryPlayList: "/top/playlist",
+  //排行榜{排行榜}
+  queryToplist: "/top/list",
   //推荐歌单详情
   querySongListDetail: '/playlist/detail',
   //歌曲详情
-  querySongDetail:'/song/detail',
+  querySongDetail: '/song/detail',
   //音乐url
-  queryMusicUrl:"/music/url",
+  queryMusicUrl: "/music/url",
   //音乐歌词
-  queryLyric:"/lyric"
+  queryLyric: "/lyric",
+  //电台节目
+  queryDjSub: "/dj/program"
 };
 module.exports = apiList;

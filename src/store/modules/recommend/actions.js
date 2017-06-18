@@ -46,5 +46,6 @@ export default {
   async get_Recommend_PrBCStation(context) {
     let res = await getData('queryPrBCStation');
     context.commit('set_Recommend_PrBCStation', res.data.result);
+    console.log(res.data)
   },
 }

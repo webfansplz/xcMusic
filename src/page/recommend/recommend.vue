@@ -1,6 +1,6 @@
 <template>
   <div id="recommend">
-    <headerNav></headerNav>
+    <headerNav tabIndex="0"></headerNav>
     <!--轮播开始-->
     <swiper loop auto :aspect-ratio="300/800" dots-position="center">
       <swiper-item v-for="(item,i) in bannerList" :key="i">
@@ -30,7 +30,7 @@
         <i class="iconfont icon-right"></i>
       </h1>
       <ul>
-        <li v-for="(item,i) in PrivateContxt">
+        <li v-for="(item,i) in PrivateContxt" :key="i">
           <img :src="item.picUrl">
           <p>{{item.name}}</p>
         </li>
@@ -60,12 +60,12 @@
         <i class="iconfont icon-right"></i>
       </h1>
       <ul>
-        <li v-for="(item,i) in PrBCStation">
+        <router-link v-for="(item,i) in PrBCStation" tag="li" :to="{name:'djListDetails',params:{id:item.id}}" :key="i">
           <i class="iconfont icon-play"></i>
           <img :src="item.picUrl">
           <p>{{item.name}}</p>
           <span>{{item.program.radio.name}}</span>
-        </li>
+        </router-link>
       </ul>
     </div>
     <!--主播电台结束-->
@@ -148,7 +148,7 @@
     }
     .re-songList,
     .re-BCStation {
-      font-size:0;
+      font-size: 0;
       li {
         .mx_flex_item(0 0 33%);
         p {
@@ -165,7 +165,7 @@
       }
     }
     .re-PrivateContxt {
-      font-size:0;
+      font-size: 0;
       li {
         .mx_flex_item(0 0 49.5%);
         p {
@@ -177,7 +177,7 @@
       }
     }
     .re-PrMV {
-      font-size:0;      
+      font-size: 0;
       li {
         .mx_flex_item(0 0 49.5%);
         i {
@@ -208,8 +208,8 @@
         }
       }
     }
-    .vux-indicator{
-      font-size:0;
+    .vux-indicator {
+      font-size: 0;
     }
   }
 

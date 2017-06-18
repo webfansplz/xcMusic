@@ -7,7 +7,6 @@ export default {
     });
     //判断是否更新音乐url
     if (context.state.curMusic == '' || context.state.curMusic != payload) {
-      console.log(res.data.data[0].url)
       context.commit('set_musicUrl', res.data.data[0].url);
       context.commit('set_curMusic', payload);
     }
@@ -44,10 +43,8 @@ export default {
         if (songList[i].id == payload.id) {
           if (payload.type == 'prev') {
             if (i == 0) {
-              console.log(songList[songList.length - 1].id);
               return songList[songList.length - 1].id;
             } else {
-              console.log(songList[i - 1].id);
               return songList[i - 1].id;
             }
           } else {
@@ -60,6 +57,5 @@ export default {
         }
       }
     }
-    console.log(context.rootState.songListDetails.tracks)
   }
 }

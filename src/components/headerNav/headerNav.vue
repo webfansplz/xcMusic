@@ -1,24 +1,24 @@
 <template>
-<div class="headerNavWrapper">
-  <div id="headerNav">
-    <div class="search">
-      <i class="iconfont icon-micro"></i>
-      <div class="search-box">
-        <label class="iconfont icon-glass" for="searchBox">
+  <div class="headerNavWrapper">
+    <div id="headerNav">
+      <div class="search">
+        <i class="iconfont icon-micro"></i>
+        <div class="search-box">
+          <label class="iconfont icon-glass" for="searchBox">
           <span>搜索音乐,歌词,电台</span>
       </label>
-        <input type="text" id="searchBox" @focus="goSearch">
+          <input type="text" id="searchBox" @focus="goSearch">
+        </div>
+        <i class="iconfont icon-music"></i>
       </div>
-      <i class="iconfont icon-music"></i>
+      <tab :line-width="2" :custom-bar-width="getBarWidth" bar-active-color="#f33" active-color='#f33' class="tabNaver">
+        <tab-item @on-item-click="skipPage" :selected="tabIndex ==0">个性推荐</tab-item>
+        <tab-item @on-item-click="skipPage" :selected="tabIndex == 1">歌单</tab-item>
+        <tab-item>主播电台</tab-item>
+        <tab-item @on-item-click="skipPage" :selected="tabIndex == 3">排行榜</tab-item>
+      </tab>
     </div>
-    <tab :line-width="2" :custom-bar-width="getBarWidth" bar-active-color="#f33" active-color='#f33' class="tabNaver">
-      <tab-item selected>个性推荐</tab-item>
-      <tab-item>歌单</tab-item>
-      <tab-item>主播电台</tab-item>
-      <tab-item>排行榜</tab-item>
-    </tab>
   </div>
-</div>
 </template>
 <script>
   import {
@@ -31,6 +31,7 @@
       Tab,
       TabItem
     },
+    props: ['tabIndex'],
     data() {
       return {
 
@@ -45,8 +46,24 @@
         return num + 'px'
       },
       // 搜索框获取焦点
-      goSearch(){
+      goSearch() {
         console.log(123)
+      },
+      //跳转页面
+      skipPage(index) {
+        if (index == 1) {
+          this.$router.push({
+            name: 'songList'
+          })
+        } else if (index == 0) {
+          this.$router.push({
+            name: 'recommend'
+          })
+        } else if (index == 3) {
+          this.$router.push({
+            name: 'topList'
+          })
+        }
       }
     }
   }
@@ -54,19 +71,20 @@
 </script>
 <style lang="less">
   @import '../../assets/style/mixin';
-  .headerNavWrapper{
+  .headerNavWrapper {
     height: .88rem;
   }
+
   #headerNav {
-    font-size:.12rem;
+    font-size: .12rem;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 999;
-    .mx_wh(100%,.88rem);
+    .mx_wh(100%, .88rem);
     .search {
       position: relative;
-      .mx_whlh(100%,.48rem,.48rem);
+      .mx_whlh(100%, .48rem, .48rem);
       .backgroundRed;
       text-align: center;
       .icon-micro {
@@ -110,9 +128,9 @@
         text-align: center;
       }
     }
-    .vux-tab-item{
-      .mx_fc(.14rem,#666);
-      .mx_hlh(.4rem,.4rem);
+    .vux-tab-item {
+      .mx_fc(.14rem, #666);
+      .mx_hlh(.4rem, .4rem);
     }
   }
 

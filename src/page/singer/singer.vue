@@ -20,7 +20,7 @@
     </div>
     <div class="hotAlbums" v-else>
       <ul>
-        <router-link v-for="(item,i) in albums.hotAlbums" :key="i" tag="li" :to="{name:'songListDetails',params:{id:item.id}}">
+        <router-link v-for="(item,i) in singerAlbums.hotAlbums" :key="i" tag="li" :to="{name:'albumsListDetails',params:{id:item.id}}">
           <div><img :src="item.picUrl"></div>
           <span class="halfBorder">
             <p>{{item.name}}</p>
@@ -56,9 +56,9 @@
         return this.$store.state.singerSong;
       },
       //歌手专辑
-      albums() {
-        console.log(this.$store.state.albums)
-        return this.$store.state.albums;
+      singerAlbums() {
+        console.log(this.$store.state.Singeralbums)
+        return this.$store.state.Singeralbums;
       }
     },
     methods: {
@@ -75,7 +75,7 @@
         if (index == 0) {
           this.$store.dispatch('get_singerSong', this.$route.params.id);
         } else {
-          this.$store.dispatch('get_albums', this.$route.params.id);
+          this.$store.dispatch('get_singerAlbums', this.$route.params.id);
         }
       }
     }

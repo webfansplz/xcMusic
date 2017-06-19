@@ -56,12 +56,20 @@ export default {
     });
     context.commit('set_singerSong', res.data);
   },
-  //获取专辑
+  //获取歌手专辑
+  async get_singerAlbums(context, payload) {
+    let res = await getData('querySingerAlbums', {
+      id: payload
+    });
+    console.log(res)
+    context.commit('set_Singeralbums', res.data);
+  },
+  //获取专辑内容
   async get_albums(context, payload) {
     let res = await getData('queryAlbums', {
       id: payload
     });
-    console.log(res)
     context.commit('set_albums', res.data);
+    console.log(res)
   }
 }

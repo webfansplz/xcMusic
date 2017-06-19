@@ -31,7 +31,11 @@ export default {
   set_singerSong(state, payload) {
     state.singerSong = payload;
   },
-  //设置专辑
+  //设置歌手专辑
+  set_Singeralbums(state, payload) {
+    state.Singeralbums = payload;
+  },
+  //设置专辑内容
   set_albums(state, payload) {
     state.albums = payload;
   }

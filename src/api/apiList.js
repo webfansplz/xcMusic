@@ -35,7 +35,9 @@ const apiList = {
   querySearch: "/search",
   //歌手单曲
   querySingerSong: "/artists",
-  //专辑
-  queryAlbums:"/artist/album"
+  //歌手专辑
+  querySingerAlbums: "/artist/album",
+  //专辑内容
+  queryAlbums: "/album"
 };
 module.exports = apiList;

@@ -24,8 +24,18 @@ export default {
       'name': ''
     }
   },
-  //专辑
+  //歌手专辑
+  Singeralbums: {
+
+  },
+  //专辑内容
   albums: {
-    
+    'album': {
+      'picUrl': '',
+      'name': '',
+      artist: {
+        'name': ''
+      }
+    }
   }
 }

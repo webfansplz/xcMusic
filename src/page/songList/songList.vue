@@ -51,10 +51,11 @@
 <style lang="less">
   @import '../../assets/style/mixin';
   #songList {
+    .mx_wh(100%, auto);
     .titleWrapper {
-      .mx_flex;
-      .mx_flex_mid;
-      height: .5rem;
+      // .mx_flex;
+      // .mx_flex_mid;
+      .mx_wh(100%, .5rem);
     }
     .songListTitle {
       .mx_wh(80%, .3rem);
@@ -62,6 +63,8 @@
       position: fixed;
       z-index: 999;
       .mx_flex;
+      left: 50%;
+      transform: translatex(-50%);
       span {
         background-color: #fff;
         .mx_flex_item(1);

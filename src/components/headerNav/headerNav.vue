@@ -6,7 +6,7 @@
         <div class="search-box">
           <label class="iconfont icon-glass" for="searchBox">
           <span>搜索音乐,歌词,电台</span>
-      </label>
+          </label>
           <input type="text" id="searchBox" @focus="goSearch">
         </div>
         <i class="iconfont icon-music"></i>
@@ -33,9 +33,7 @@
     },
     props: ['tabIndex'],
     data() {
-      return {
-
-      }
+      return {}
     },
     methods: {
       //设置tab线条宽度
@@ -47,7 +45,9 @@
       },
       // 搜索框获取焦点
       goSearch() {
-        console.log(123)
+        this.$router.push({
+          name: 'searchList'
+        })
       },
       //跳转页面
       skipPage(index) {
@@ -74,7 +74,7 @@
   .headerNavWrapper {
     height: .88rem;
   }
-
+  
   #headerNav {
     font-size: .12rem;
     position: fixed;
@@ -95,6 +95,10 @@
         .mx_fc(.22rem, #fff);
         .mx_postl(.03rem, 90%);
       }
+      .cancelSearch {
+        .mx_fc(.14rem, #fff);
+        .mx_postl(0, 90%);
+      }
       .search-box {
         position: relative;
         display: inline-block;
@@ -113,6 +117,7 @@
         }
         input {
           .mx_whlh(100%, .32rem, .24rem);
+          .mx_fc(.12rem, #666);
           .mx_bdrs(.2rem);
           text-indent: 5%;
         }

@@ -30,6 +30,8 @@ const apiList = {
   //音乐歌词
   queryLyric: "/lyric",
   //电台节目
-  queryDjSub: "/dj/program"
+  queryDjSub: "/dj/program",
+  //搜索
+  querySearch:"/search"
 };
 module.exports = apiList;

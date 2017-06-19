@@ -22,5 +22,9 @@ export default {
   //设置电台节目
   set_djListDetails(state, payload) {
     state.djListDetails = payload;
+  },
+  //设置搜索列表
+  set_searchList(state, payload) {
+    state.searchList = payload;
   }
 }

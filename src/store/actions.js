@@ -43,5 +43,10 @@ export default {
     })
     console.log(res)
     // context.commit('set_djListDetails', res.data.result);
+  },
+  async get_SearchList(context, payload) {
+    let res = await getData('querySearch', payload)
+    context.commit('set_searchList', res.data.result);
+    // console.log(res.data.result)
   }
 }

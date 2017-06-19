@@ -86,7 +86,7 @@
     "npm": ">= 3.0.0"
   },
   "browserslist": [
-    "iOS >= 8",
+    "iOS >= 7",
      "Android >= 4.1"
   ]
 }

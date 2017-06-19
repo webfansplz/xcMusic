@@ -14,5 +14,7 @@ export default {
   //云音乐官方排行榜
   cloudMusicTopList: [],
   //电台节目
-  djListDetails: []
+  djListDetails: [],
+  //搜索列表
+  searchList: []
 }

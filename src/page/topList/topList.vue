@@ -67,6 +67,7 @@
         }
         ul {
           .mx_flex_item(3);
+          height: 100%;
           li {
             .mx_fc(.12rem, #666);
             .mx_single_ellipsis;

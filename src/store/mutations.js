@@ -26,5 +26,13 @@ export default {
   //设置搜索列表
   set_searchList(state, payload) {
     state.searchList = payload;
+  },
+  //设置歌手单曲
+  set_singerSong(state, payload) {
+    state.singerSong = payload;
+  },
+  //设置专辑
+  set_albums(state, payload) {
+    state.albums = payload;
   }
 }

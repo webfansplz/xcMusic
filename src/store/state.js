@@ -16,5 +16,16 @@ export default {
   //电台节目
   djListDetails: [],
   //搜索列表
-  searchList: []
+  searchList: [],
+  //歌手单曲
+  singerSong: {
+    'artist': {
+      'picUrl': '',
+      'name': ''
+    }
+  },
+  //专辑
+  albums: {
+    
+  }
 }

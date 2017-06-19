@@ -16,6 +16,8 @@ const songList = r => require.ensure([], () => r(require('../page/songList/songL
 const topList = r => require.ensure([], () => r(require('../page/topList/topList')), 'topList')
 //搜索列表
 const searchList = r => require.ensure([], () => r(require('../page/searchList/searchList')), 'searchList')
+//获取歌手歌单
+const singer = r => require.ensure([], () => r(require('../page/singer/singer')), 'singer')
 export default new Router({
   routes: [{
       path: '/',
@@ -50,6 +52,10 @@ export default new Router({
       path: '/searchList',
       name: 'searchList',
       component: searchList
+    }, {
+      path: '/singer/:id',
+      name: 'singer',
+      component: singer
     }
   ],
   scrollBehavior(to, from, savedPosition) {

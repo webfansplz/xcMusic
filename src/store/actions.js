@@ -44,9 +44,24 @@ export default {
     console.log(res)
     // context.commit('set_djListDetails', res.data.result);
   },
+  //获取搜索列表
   async get_SearchList(context, payload) {
     let res = await getData('querySearch', payload)
     context.commit('set_searchList', res.data.result);
-    // console.log(res.data.result)
+  },
+  //获取歌手单曲
+  async get_singerSong(context, payload) {
+    let res = await getData('querySingerSong', {
+      id: payload
+    });
+    context.commit('set_singerSong', res.data);
+  },
+  //获取专辑
+  async get_albums(context, payload) {
+    let res = await getData('queryAlbums', {
+      id: payload
+    });
+    console.log(res)
+    context.commit('set_albums', res.data);
   }
 }

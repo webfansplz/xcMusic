@@ -20,19 +20,11 @@
     <div class="searchList-hot" v-if="SearchLabel == true&&searchList.length==0">
       <h1 class="hot-title">热门搜索</h1>
       <ul class="hot-contxt">
-        <li>My Lover</li>
-        <li>童话镇</li>
-        <li>谁明浪子心</li>
-        <li>陈奕迅</li>
-        <li>不浪漫罪名</li>
-        <li>小幸运</li>
-        <li>说不出再见</li>
-        <li>相依为命</li>
+        <li v-for="(item,i) in hotSearchKeywords" :key="i" @click="chooseHotSearch(item)">{{item}}</li>
       </ul>
     </div>
     <!--单曲-->
-    <div class="singleSong" v-if="searchType == 1">
-      <!--&&searchList.songs.length>0-->
+    <div class="singleSong" v-if="searchType == 1&&searchList!=''">
       <ul>
         <router-link v-for="(item,i) in searchList.songs" class="halfBorder" tag="li" :key="i" :to="{name:'songDetails',params:{id:item.id}}">
           <p>{{item.name}}</p>
@@ -41,19 +33,18 @@
       </ul>
     </div>
     <!--歌手-->
-    <div class="singer" v-if="searchType == 100">
-      <!--&&searchList.artists.length>0-->
+    <div class="singer" v-if="searchType == 100&&searchList!=''">
       <ul>
-        <li v-for="(item,i) in searchList.artists">
+        <router-link v-for="(item,i) in searchList.artists" :key="i" tag="li" :to="{name:'singer',params:{id:item.id}}">
           <div><img :src="item.picUrl"></div>
           <span class="halfBorder">{{item.name}}</span>
-        </li>
+        </router-link>
       </ul>
     </div>
     <!--专辑-->
-    <div class="albums" v-if="searchType == 10">
+    <div class="albums" v-if="searchType == 10&&searchList!=''">
       <ul>
-        <li v-for="(item,i) in searchList.albums">
+        <li v-for="(item,i) in searchList.albums" :key="i">
           <div><img :src="item.picUrl"></div>
           <span class="halfBorder">
             <p>{{item.name}}</p>
@@ -63,9 +54,9 @@
       </ul>
     </div>
     <!--歌单-->
-    <div class="playlists" v-if="searchType == 1000">
+    <div class="playlists" v-if="searchType == 1000&&searchList!=''">
       <ul>
-        <router-link v-for="(item,i) in searchList.playlists" :to="{name:'songListDetails',params:{id:item.id}}" tag="li">
+        <router-link v-for="(item,i) in searchList.playlists" :to="{name:'songListDetails',params:{id:item.id}}" tag="li" :key="i">
           <div><img :src="item.coverImgUrl"></div>
           <span class="halfBorder">
             <p>{{item.name}}</p>
@@ -75,9 +66,9 @@
       </ul>
     </div>
     <!--用户-->
-    <div class="userprofiles" v-if="searchType == 1002">
+    <div class="userprofiles" v-if="searchType == 1002&&searchList!=''">
       <ul>
-        <li v-for="(item,i) in searchList.userprofiles">
+        <li v-for="(item,i) in searchList.userprofiles" :key="i">
           <div><img :src="item.backgroundUrl"></div>
           <span class="halfBorder">
             <p>{{item.nickname}}</p>
@@ -108,7 +99,9 @@
         //搜索值
         searchVal: '',
         //搜索类型(默认单曲)
-        searchType: 1
+        searchType: 1,
+        //热门搜索关键词
+        hotSearchKeywords: ['My Lover', '童话镇', '谁明浪子心', '陈奕迅', '不浪漫罪名', '小幸运', '讲不出再见', '相依为命']
       }
     },
     computed: {
@@ -119,12 +112,10 @@
       }
     },
     methods: {
-      //设置tab线条宽度
-      getBarWidth(index) {
-        let num;
-        index == 1 ? num = 28 : num = 42;
-        index % 2 == 0 ? num = 56 : true;
-        return num + 'px';
+      //选择热门搜索关键字
+      chooseHotSearch(val) {
+        this.searchVal = val;
+        this.goSearch();
       },
       // 搜索框获取焦点
       goSearch() {
@@ -134,7 +125,7 @@
             type: this.searchType
           }
           this.$store.dispatch('get_SearchList', paramObj)
-        } else {
+        } else if (this.searchVal == '' || this.searchVal == ' ') {
           this.$store.commit('set_searchList', []);
         }
       },
@@ -161,6 +152,7 @@
         } else {
           this.SearchLabel = true;
         }
+        this.goSearch();
       },
       //监听搜索类型
       searchType() {

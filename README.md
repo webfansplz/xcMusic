@@ -3,11 +3,10 @@
 ## 项目地址 (File structure)
 
 
-```
 [api来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/) 
 [源码地址](https://github.com/webfansplz/xcMusic)   
 [项目预览](http://1mhere.cn)  
-```
+
 
 ## 技术栈 (File structure)
 

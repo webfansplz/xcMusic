@@ -7,6 +7,42 @@ export default {
     'creator': {
       'avatarUrl': ''
     },
-    'tracks':[]
-  }
+    'tracks': []
+  },
+  //歌单列表
+  playList: [],
+  //云音乐官方排行榜
+  cloudMusicTopList: [],
+  //电台节目
+  djListDetails: [],
+  //搜索列表
+  searchList: [],
+  //歌手单曲
+  singerSong: {
+    'artist': {
+      'picUrl': '',
+      'name': ''
+    }
+  },
+  //歌手专辑
+  Singeralbums: {
+
+  },
+  //专辑内容
+  albums: {
+    'album': {
+      'picUrl': '',
+      'name': '',
+      'info': {
+        'likedCount': '',
+        'commentCount': '',
+        'shareCount': ''
+      },
+      'artist': {
+        'name': ''
+      }
+    }
+  },
+  //加载状态
+  isLoading: false
 }

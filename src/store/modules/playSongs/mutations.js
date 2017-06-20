@@ -26,5 +26,9 @@ export default {
   //设置播放状态
   set_playStatus(state, payload) {
     state.playStatus = payload;
+  },
+  //设置底部播放列表开关
+  set_songListStatus(state, payload) {
+    state.songListStatus = payload;
   }
 }

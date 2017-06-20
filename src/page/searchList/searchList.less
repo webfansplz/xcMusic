@@ -1,0 +1,166 @@
+ @import '../../assets/style/mixin';
+ #searchList {
+   .mx_wh(100%, 100%);
+   .search {
+     position: relative;
+     .mx_whlh(100%, .48rem, .48rem);
+     .backgroundRed;
+     text-align: center;
+     .mx_flex_mid;
+     .icon-micro {
+       .mx_fc(.22rem, #fff);
+       .mx_postl(0, 5%);
+     }
+     .icon-music {
+       .mx_fc(.22rem, #fff);
+       .mx_postl(.03rem, 90%);
+     }
+     .cancelSearch {
+       .mx_fc(.14rem, #fff);
+       .mx_postl(0, 90%);
+     }
+     .search-box {
+       position: relative;
+       display: inline-block;
+       .mx_wh(70%, 100%);
+       .mx_flex_mid;
+       label {
+         color: #dedede;
+         .mx_hlh(.32rem, .34rem);
+         .mx_fc(.14rem, #dedede);
+         .mx_postl(.08rem, 22%);
+         span {
+           font-size: .13rem;
+         }
+       }
+       label:before {
+         margin-right: .05rem;
+       }
+       input {
+         .mx_whlh(100%, .32rem, .24rem);
+         .mx_fc(.12rem, #666);
+         .mx_bdrs(.2rem);
+         text-indent: 5%;
+       }
+     }
+   }
+   .searchList-type {
+     position: relative;
+     z-index: 9999;
+     .mx_flex;
+     .mx_hlh(.4rem, .4rem);
+     .mx_fc(.14rem, #666);
+     background-color: #fff;
+     tab-item {
+       .mx_flex_item(1);
+       text-align: center;
+     }
+   }
+   .searchList-hot {
+     .mx_wh(90%, auto);
+     margin: 0 auto;
+     margin-top: .1rem;
+     h1 {
+       .mx_fc(.14rem, #666);
+       font-weight: normal;
+     }
+     .hot-contxt {
+       padding-top: .15rem;
+       .mx_wh(100%, auto);
+       .mx_flex;
+       .mx_flex_content;
+       li {
+         .mx_fc(.14rem, #333);
+         padding: .05rem .08rem;
+         margin-bottom: .08rem;
+         position: relative;
+         &:after {
+           content: "  ";
+           position: absolute;
+           left: 0;
+           top: 0;
+           width: 200%;
+           height: 200%;
+           border: 1px solid #cecece;
+           border-radius: 40px;
+           -webkit-transform-origin: 0 0;
+           -ms-transform-origin: 0 0;
+           transform-origin: 0 0;
+           -webkit-transform: scale(.5, .5);
+           -ms-transform: scale(.5, .5);
+           transform: scale(.5, .5);
+           -moz-box-sizing: border-box;
+           box-sizing: border-box;
+         }
+       }
+     }
+   }
+   .singleSong {
+     .mx_wh(100%, auto);
+     li {
+       margin-left: 5%;
+       .mx_whlh(95%, .5rem, .5rem);
+       padding: .03rem 0;
+       p,
+       span {
+         .mx_whlh(100%, 50%, .25rem);
+         .mx_single_ellipsis;
+       }
+       p {
+         .mx_fc(.14rem, #333);
+       }
+       span {
+         display: block;
+         .mx_fc(.12rem, #666);
+       }
+     }
+   }
+   .singer,
+   .albums,
+   .playlists,
+   .userprofiles {
+     .mx_wh(100%, auto);
+     li {
+       .mx_whlh(100%, .5rem, .5rem);
+       .mx_flex;
+       div {
+         .mx_flex_item(1 0 15%);
+         .mx_brbox;
+         padding: .02rem .04rem;
+         img {
+           display: block;
+           width: 100%;
+           height: 100%;
+         }
+       }
+       span {
+         padding: .02rem 0;
+         .mx_flex_item(1 0 85%);
+         .mx_fc(.14rem, #333);
+       }
+     }
+   }
+   .albums,
+   .playlists,
+   .userprofiles {
+     span.halfBorder {
+       p,
+       span {
+         .mx_whlh(100%, 50%, .25rem);
+         .mx_single_ellipsis;
+       }
+       p {
+         .mx_fc(.14rem, #333);
+       }
+       span {
+         display: block;
+         .mx_fc(.12rem, #666);
+       }
+     }
+   }
+   .userprofiles {
+     img {
+       border-radius: 50%;
+     }
+   }
+ }

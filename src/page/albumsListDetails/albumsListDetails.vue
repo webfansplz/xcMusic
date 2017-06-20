@@ -1,22 +1,19 @@
 <template>
-  <div id="songListDetails">
-    <!--推荐歌单详情头部开始-->
+  <div id="albumsListDetails">
     <div class="header">
       <div class="header-title">
-        <i class="iconfont icon-left"></i> 歌单
+        <i class="iconfont icon-left"></i> 专辑
         <i class="iconfont icon-music"></i>
       </div>
       <div class="header-contxt">
         <div class="header-contxt-l">
-          <i class="iconfont icon-headset">{{format.formatPlayCount(songListDetails.playCount)}}</i>
-          <img v-lazy="songListDetails.picUrl">
+          <img v-lazy="albums.album.picUrl">
           <i class="iconfont icon-mxclt"></i>
         </div>
         <div class="header-contxt-r">
-          <p>{{songListDetails.name}}</p>
+          <p>{{albums.album.name}}</p>
           <div>
-            <img v-lazy="songListDetails.creator.avatarUrl">
-            <span> {{songListDetails.creator.nickname}}</span>
+            <span>歌手 : <i>{{albums.album.artist.name}}</i></span>
             <i class="iconfont icon-right"></i>
           </div>
         </div>
@@ -24,23 +21,21 @@
       <div class="header-footer">
         <span>
             <i class="icon-noCollect iconfont"></i>
-            <p>{{songListDetails.subscribedCount}}</p>
+            <p>{{albums.album.info.likedCount}}</p>
         </span>
         <span>
             <i class="iconfont icon-comments"></i>
-            <p>{{songListDetails.trackCount}}</p>
+            <p>{{albums.album.info.commentCount}}</p>
         </span>
         <span>
             <i class="iconfont icon-forwarding"></i>
-            <p>{{songListDetails.shareCount}}</p>
+            <p>{{albums.album.info.shareCount}}</p>
         </span>
       </div>
     </div>
-    <!--推荐歌单详情头部结束-->
-    <!--推荐歌曲详情内容开始-->
     <div class="songList">
       <ul>
-        <router-link v-for="(item,i) in songListDetails.tracks" :key="i" tag="li" :to="{name:'songDetails',params:{id:item.id}}">
+        <router-link v-for="(item,i) in albums.songs" :key="i" tag="li" :to="{name:'songDetails',params:{id:item.id}}">
           <i>{{i+1}}</i>
           <span class="halfBorder">
             <p>{{item.name}}</p>
@@ -49,7 +44,6 @@
         </router-link>
       </ul>
     </div>
-    <!--推荐歌曲详情内容结束-->
   </div>
 </template>
 <script>
@@ -57,13 +51,11 @@
     name: 'songListDetails',
     components: {},
     created() {
-      this.$store.dispatch('get_songListDetails', {
-        id: this.$route.params.id
-      });
+      this.$store.dispatch('get_albums', this.$route.params.id);
     },
     computed: {
-      songListDetails() {
-        return this.$store.state.songListDetails;
+      albums() {
+        return this.$store.state.albums;
       }
     }
   }
@@ -71,7 +63,7 @@
 </script>
 <style lang="less">
   @import '../../assets/style/mixin';
-  #songListDetails {
+  #albumsListDetails {
     .header {
       .mx_wh(100%, auto);
       background: linear-gradient(left, #dcdcdc, #666);
@@ -122,6 +114,7 @@
         .mx_fc(.12rem, #fff);
         align-items: center;
         display: flex;
+        margin-top: .1rem;
       }
       p {
         .mx_fc(.16rem, #fff);
@@ -132,8 +125,11 @@
         width: 15%;
       }
       span {
-        padding: 0 .05rem;
+        // padding: 0 .05rem;
         .mx_fc(.12rem, #ccc);
+        i {
+          .mx_fc(.12rem, #fff);
+        }
       }
       .icon-right {
         .mx_fc(.14rem, #ccc);

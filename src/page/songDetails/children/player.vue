@@ -1,48 +1,86 @@
 <template>
   <div id="player">
-    <div class="player-progress">
-      <range v-model="progressWidth" :rangeBarHeight="3" :step="step"></range>
-       <!--@on-change="changeProgress"-->
-      <span class="range-start">{{formatTime(musicCurtime)}}</span>
-      <span class="range-end">{{formatTime(musicDuration)}}</span>
+    <div class="progress-box">
+      <div class="schedule" @touchmove="changeProgress" ref="schedule" @touchstart="changeProgress"></div>
+      <i class="progress-bar" :style={width:progressWidth}>
+        <s class="progress-dot"></s>
+      </i>
+      <span class="curTime">{{formatTime(musicCurtime)}}</span>
+      <span class="duration">{{formatTime(musicDuration)}}</span>
     </div>
     <div class="playContxt-btnBox">
-      <span><i class="iconfont icon-forward"></i></span>
+      <span><i class="iconfont icon-playType"></i></span>
+      <span @click="goPrevSongs"><i class="iconfont icon-forward"></i></span>
       <span><i class="iconfont" :class="{'icon-pause':playStatus ==true, 'icon-play':playStatus ==false}" @click="togglePlayStatus"></i></span>
-      <span><i class="iconfont icon-forward"></i></span>
+      <span @click="goNextSongs"><i class="iconfont icon-forward"></i></span>
+      <span @click="openSongList"><i class="iconfont icon-playList"></i></span>
     </div>
   </div>
 </template>
 <script>
   import {
-    Range
-  } from 'vux'
+    mapState
+  } from 'vuex'
   export default {
     name: 'player',
-    data() {
-      return {
-        progressWidth: 0,
-        step: 1 / 10
-      }
-    },
-    components: {
-      Range
-    },
     computed: {
-      //播放状态
-      playStatus() {
-        return this.$store.state.playSongs.playStatus;
-      },
-      //歌曲当前时间
-      musicCurtime() {
-        return this.$store.state.playSongs.musicCurtime;
-      },
-      //歌曲总时间
-      musicDuration() {
-        return this.$store.state.playSongs.musicDuration;
+      ...mapState({
+        //播放状态
+        playStatus: state => state.playSongs.playStatus,
+        //歌曲当前时间
+        musicCurtime: state => state.playSongs.musicCurtime,
+        //歌曲总时间
+        musicDuration: state => state.playSongs.musicDuration,
+        //歌曲列表
+        songListDetails: state => state.songListDetails.tracks,
+      }),
+      //进度条长度
+      progressWidth() {
+        let per = (this.musicCurtime / this.musicDuration).toFixed(3);
+        return per * 100 + '%';
       }
     },
     methods: {
+      //上一曲
+      goPrevSongs() {
+        if (this.songListDetails.length > 0) {
+          let obj = {
+            id: this.$route.params.id,
+            type: 'prev'
+          }
+          this.$store.dispatch('go_SwitchSongs', obj).then((res) => {
+            this.$store.dispatch('get_PlaySongDetails', res);
+            this.$router.push({
+              name: 'songDetails',
+              params: {
+                id: res
+              }
+            })
+          });
+        }
+      },
+      //下一曲
+      goNextSongs() {
+        if (this.songListDetails.length > 0) {
+          let obj = {
+            id: this.$route.params.id,
+            type: 'next'
+          }
+          this.$store.dispatch('go_SwitchSongs', obj).then((res) => {
+            this.$store.dispatch('get_PlaySongDetails', res);
+            this.$router.push({
+              name: 'songDetails',
+              params: {
+                id: res
+              }
+            })
+          });
+        }
+      },
+      //打开底部播放列表
+      openSongList() {
+        this.$store.commit('set_songListStatus', true);
+      },
       // 格式化时间
       formatTime(time) {
         let min = parseInt(time / 60);
@@ -56,86 +94,20 @@
         this.$store.commit('set_playStatus', !this.playStatus);
       },
       //改变歌曲进度
-      changeProgress(val) {
-        let num = val * this.musicDuration / 100;
-        if (Math.abs(parseInt(num) - parseInt(this.musicCurtime)) > 3) {
-          document.getElementById('musicPlayer').currentTime = num;
-        }
-      }
-    },
-    watch: {
-      musicCurtime() {
-        let per = (this.musicCurtime / this.musicDuration).toFixed(2);
-        this.progressWidth = per * 100;
+      changeProgress(event) {
+        let ev = event || window.event;
+        // ev.preventDefault();
+        let num = event.touches[0].clientX - event.target.parentNode.offsetLeft;
+        let max = event.target.parentNode.offsetWidth;
+        num > max ? num = max : num;
+        num < 0 ? num = 0 : num;
+        num = num / max * this.musicDuration.toFixed(3);
+        document.getElementById('musicPlayer').currentTime = num;
       }
     }
   }
 
 </script>
 <style lang="less">
-  @import '../../../assets/style/mixin';
-  #player {
-    .playContxt-btnBox {
-      .mx_wh(2.4rem, .8rem);
-      .mx_flex;
-      font-size: 0;
-      margin: 0 auto;
-      span {
-        .mx_flex_item(1);
-        .mx_flex_mid;
-        &:nth-child(1) {
-          i {
-            transform: rotate(180deg);
-          }
-        }
-        &:nth-child(2) {
-          i {
-            .mx_fc(.55rem, #fff);
-          }
-        }
-        i {
-          .mx_fc(.45rem, #fff);
-        }
-      }
-    }
-    .player-progress {
-      .mx_wh(100%, auto);
-      position: relative;
-    }
-    .vux-range-input-box {
-      margin: 0 !important;
-    }
-    .range-start,
-    .range-end {
-      display: inline-block;
-      .mx_whlh(.5rem, .12rem, .12rem);
-      .mx_fc(.12rem, #fff);
-      text-align: center;
-    }
-    .range-start {
-      .mx_postl(-.06rem, 0);
-    }
-    .range-end {
-      .mx_postr(-.06rem, 0);
-    }
-    .range-bar {
-      position: relative;
-      .mx_wh(70%, .03rem);
-      margin: 0 auto;
-      background: radial-gradient(#dedede -180%, transparent 100%);
-      .mx_bdrs(.2rem);
-      .range-min,
-      .range-max {
-        font-size: 0;
-      }
-      .range-quantity {
-        .backgroundRed;
-      }
-      .range-handle {
-        .mx_wh(.15rem, .15rem);
-        top: -.075rem !important;
-      }
-    }
-  }
-
+  @import '../songDetails';
 </style>

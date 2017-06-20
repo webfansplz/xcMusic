@@ -1,10 +1,10 @@
 <template>
-  <div id="recommend">
-    <headerNav></headerNav>
+  <div id="recommend" @touchstart="getOrigin" @touchend="compDistance">
+    <headerNav tabIndex="0"></headerNav>
     <!--轮播开始-->
     <swiper loop auto :aspect-ratio="300/800" dots-position="center">
       <swiper-item v-for="(item,i) in bannerList" :key="i">
-        <img width="100%" height="100%" :src="item.pic">
+        <img width="100%" height="100%" v-lazy="item.pic">
       </swiper-item>
     </swiper>
     <!--轮播结束-->
@@ -17,7 +17,7 @@
       <ul>
         <router-link v-for="(item,i) in PrSongList" :key="i" tag="li" :to="{name:'songListDetails',params:{id:item.id}}">
           <i class="iconfont icon-headset">{{format.formatPlayCount(item.playCount)}}</i>
-          <img :src="item.picUrl">
+          <img v-lazy="item.picUrl">
           <p>{{item.name}}</p>
         </router-link>
       </ul>
@@ -30,8 +30,8 @@
         <i class="iconfont icon-right"></i>
       </h1>
       <ul>
-        <li v-for="(item,i) in PrivateContxt">
-          <img :src="item.picUrl">
+        <li v-for="(item,i) in PrivateContxt" :key="i">
+          <img v-lazy="item.picUrl">
           <p>{{item.name}}</p>
         </li>
       </ul>
@@ -44,12 +44,12 @@
         <i class="iconfont icon-right"></i>
       </h1>
       <ul>
-        <router-link v-for="(item,i) in PrMV" :key="i" tag="li" :to="{path:'/home'}">
+        <li v-for="(item,i) in PrMV" :key="i">
           <i class="iconfont icon-playMv">{{format.formatPlayCount(item.playCount)}}</i>
-          <img :src="item.picUrl">
+          <img v-lazy="item.picUrl">
           <p>{{item.name}}</p>
           <span>{{item.artists[0].name}}</span>
-        </router-link>
+        </li>
       </ul>
     </div>
     <!--推荐MV结束-->
@@ -60,9 +60,9 @@
         <i class="iconfont icon-right"></i>
       </h1>
       <ul>
-        <li v-for="(item,i) in PrBCStation">
+        <li v-for="(item,i) in PrBCStation" :key="i">
           <i class="iconfont icon-play"></i>
-          <img :src="item.picUrl">
+          <img v-lazy="item.picUrl">
           <p>{{item.name}}</p>
           <span>{{item.program.radio.name}}</span>
         </li>
@@ -78,6 +78,9 @@
     Swiper,
     SwiperItem
   } from 'vux'
+  import {
+    mapState
+  } from 'vuex'
   export default {
     name: 'recommend',
     components: {
@@ -85,30 +88,45 @@
       Swiper,
       SwiperItem
     },
+    data() {
+      return {
+        originNum: 0
+      }
+    },
     created() {
       //页面初始化
       this.$store.dispatch('initRecommendPage');
     },
     computed: {
-      //获取banner图
-      bannerList() {
-        return this.$store.state.recommend.bannerList;
+      ...mapState({
+        //获取banner图
+        bannerList: state => state.recommend.bannerList,
+        //获取推荐歌单
+        PrSongList: state => state.recommend.PrSongList,
+        //获取独家放送
+        PrivateContxt: state => state.recommend.PrivateContxt,
+        //获取推荐Mv
+        PrMV: state => state.recommend.PrMV,
+        //获取主播电台
+        PrBCStation: state => state.recommend.PrBCStation
+      })
+    },
+    methods: {
+      //获取触摸起点
+      getOrigin(event) {
+        let ev = event || window.event;
+        this.originNum = ev.touches[0].pageX;
       },
-      //获取推荐歌单
-      PrSongList() {
-        return this.$store.state.recommend.PrSongList;
-      },
-      //获取独家放送
-      PrivateContxt() {
-        return this.$store.state.recommend.PrivateContxt;
-      },
-      //获取推荐Mv
-      PrMV() {
-        return this.$store.state.recommend.PrMV;
-      },
-      //获取主播电台
-      PrBCStation() {
-        return this.$store.state.recommend.PrBCStation;
+      //计算距离,判断左/右滑动
+      compDistance(event) {
+        let ev = event || window.event;
+        let endNum = ev.changedTouches[0].pageX;
+        let offsetNum = endNum - this.originNum;
+        if (offsetNum > 10) {
+          this.$router.push({
+            name: 'songList'
+          })
+        }
       }
     }
   }
@@ -148,7 +166,7 @@
     }
     .re-songList,
     .re-BCStation {
-      font-size:0;
+      font-size: 0;
       li {
         .mx_flex_item(0 0 33%);
         p {
@@ -165,7 +183,7 @@
       }
     }
     .re-PrivateContxt {
-      font-size:0;
+      font-size: 0;
       li {
         .mx_flex_item(0 0 49.5%);
         p {
@@ -177,7 +195,7 @@
       }
     }
     .re-PrMV {
-      font-size:0;      
+      font-size: 0;
       li {
         .mx_flex_item(0 0 49.5%);
         i {
@@ -208,8 +226,8 @@
         }
       }
     }
-    .vux-indicator{
-      font-size:0;
+    .vux-indicator {
+      font-size: 0;
     }
   }
 

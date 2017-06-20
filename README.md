@@ -3,15 +3,17 @@
 ## 项目地址 (File structure)
 
 
-[api来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/) 
-[源码地址](https://github.com/webfansplz/xcMusic)   
-[项目预览](http://1mhere.cn)  
+[api来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/)       
+
+[源码地址](https://github.com/webfansplz/xcMusic)         
+
+[项目预览](http://1mhere.cn)           
 
 
 ## 技术栈 (File structure)
 
 ```
-vue2.0+vuex+vue-router2.0+es6+axios+vux
+vue2.0 + vuex + vue-router2.0 + es6 + axios + vux
 ```
 
 ## 文件结构 (File structure)

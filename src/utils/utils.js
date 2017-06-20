@@ -15,14 +15,8 @@ export default {
     if (ary.length > 0) {
       for (let i = 0; i < ary.length; i++) {
         ary[i] = ary[i].split(']');
-        // if (ary[i].length < 3) {
-        //   if (ary[i][0] == '' || ary[i][1] == '') {
-        //     ary.splice(i, 1);
-        //     i = i - 1;
-        //   }
-        // }
       }
-      if (ary.length > 0 && ary[0].length == 1) {
+      if (ary.length > 0 && ary[0][1] == '获取歌词失败!') {
         let noLyBox = [
           ['[00:00.00', '获取歌词失败!']
         ];
@@ -88,15 +82,15 @@ export default {
   compLyricPos(val, box) {
     if (box[0][1]) {
       if (box[0][1] == "获取歌词失败!" || box[0][1] == "歌词加载中!") {
-        return 1.8 + 'rem';
+        return .6 + 'rem';
       }
     }
     if (box.length > 1) {
       for (let i = 0; i < box.length; i++) {
         if (val >= box[i][0] && val <= box[i + 1][0]) {
-          return 1.8 - .3 * i + 'rem';
+          return .6 - .3 * i + 'rem';
         } else if (val >= box[box.length - 1][0]) {
-          return 1.8 - .3 * (box.length - 1) + 'rem';
+          return .6 - .3 * (box.length - 1) + 'rem';
         }
       }
     }

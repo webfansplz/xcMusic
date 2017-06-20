@@ -61,7 +61,7 @@ vue2.0 + vuex + vue-router2.0 + es6 + axios + vux
 -   歌手专辑功能(介绍及详情展示) 
 -   排行榜功能(云音乐官方版)
 
-![菜单](https://github.com/webfansplz/xcMusic/tree/master/static/index.gif)
-![搜索](https://github.com/webfansplz/xcMusic/tree/master/static/search.gif)
-![播放](https://github.com/webfansplz/xcMusic/tree/master/static/player.gif)
-![歌单](https://github.com/webfansplz/xcMusic/tree/master/static/list.gif)
+![菜单](https://github.com/webfansplz/xcMusic/blob/master/static/index.gif)
+![搜索](https://github.com/webfansplz/xcMusic/blob/master/static/search.gif)
+![播放](https://github.com/webfansplz/xcMusic/blob/master/static/player.gif)
+![歌单](https://github.com/webfansplz/xcMusic/blob/master/static/list.gif)

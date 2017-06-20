@@ -1,16 +1,16 @@
 # 仿网易云音乐(webapp)
 
-## 项目地址 (File structure)
+## 项目地址 (project address)
 
 
-[api来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/)       
+[api来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/)   感谢binaryify让我们能用自己喜欢的东西做一个自己喜欢的东西!  
 
-[源码地址](https://github.com/webfansplz/xcMusic)         
+[源码地址](https://github.com/webfansplz/xcMusic)     不要脸的求star 哈哈哈!!!
 
-[项目预览](http://1mhere.cn)           
+[项目预览](http://1mhere.cn)       1mhere.cn  
 
 
-## 技术栈 (File structure)
+## 技术栈 (technology)
 
 ```
 vue2.0 + vuex + vue-router2.0 + es6 + axios + vux
@@ -51,3 +51,17 @@ vue2.0 + vuex + vue-router2.0 + es6 + axios + vux
     |—— store                   数据状态管理组件
     |—— util                    公用方法
 ```
+
+## 项目功能 (Project Function)
+
+-   个性推荐,歌单,排行榜页面   
+-   播放功能(快进,快退,上一曲,下一曲,歌词同步等)
+-   搜索功能(热门搜索,单曲,歌手,专辑,歌单,用户) 
+-   歌单功能(最新,最热,精品歌单及详情展示)
+-   歌手专辑功能(介绍及详情展示) 
+-   排行榜功能(云音乐官方版)
+
+![菜单](https://github.com/webfansplz/xcMusic/tree/master/static/index.gif?raw=true)
+![搜索](https://github.com/webfansplz/xcMusic/tree/master/static/search.gif?raw=true)
+![播放](https://github.com/webfansplz/xcMusic/tree/master/static/player.gif?raw=true)
+![歌单](https://github.com/webfansplz/xcMusic/tree/master/static/list.gif?raw=true)

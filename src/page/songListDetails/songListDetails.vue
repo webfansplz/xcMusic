@@ -9,13 +9,13 @@
       <div class="header-contxt">
         <div class="header-contxt-l">
           <i class="iconfont icon-headset">{{format.formatPlayCount(songListDetails.playCount)}}</i>
-          <img :src="songListDetails.picUrl">
+          <img v-lazy="songListDetails.picUrl">
           <i class="iconfont icon-mxclt"></i>
         </div>
         <div class="header-contxt-r">
           <p>{{songListDetails.name}}</p>
           <div>
-            <img :src="songListDetails.creator.avatarUrl">
+            <img v-lazy="songListDetails.creator.avatarUrl">
             <span> {{songListDetails.creator.nickname}}</span>
             <i class="iconfont icon-right"></i>
           </div>

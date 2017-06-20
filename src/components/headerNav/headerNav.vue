@@ -14,7 +14,6 @@
       <tab :line-width="2" :custom-bar-width="getBarWidth" bar-active-color="#f33" active-color='#f33' class="tabNaver">
         <tab-item @on-item-click="skipPage" :selected="tabIndex ==0">个性推荐</tab-item>
         <tab-item @on-item-click="skipPage" :selected="tabIndex == 1">歌单</tab-item>
-        <tab-item>主播电台</tab-item>
         <tab-item @on-item-click="skipPage" :selected="tabIndex == 3">排行榜</tab-item>
       </tab>
     </div>
@@ -59,7 +58,7 @@
           this.$router.push({
             name: 'recommend'
           })
-        } else if (index == 3) {
+        } else if (index == 2) {
           this.$router.push({
             name: 'topList'
           })

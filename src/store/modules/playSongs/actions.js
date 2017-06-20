@@ -38,6 +38,7 @@ export default {
   //上一曲,下一曲
   async go_SwitchSongs(context, payload) {
     let songList = context.rootState.songListDetails.tracks;
+    let status = false;
     if (songList.length > 0) {
       for (let i = 0; i < songList.length; i++) {
         if (songList[i].id == payload.id) {
@@ -54,7 +55,11 @@ export default {
               return songList[i + 1].id;
             }
           }
+          status = true;
         }
+      }
+      if (status == false) {
+        return false;
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div id="songList">
+  <div id="songList" @touchstart="getOrigin" @touchend="compDistance">
     <headerNav tabIndex="1"></headerNav>
     <div class="titleWrapper">
       <div class="songListTitle">
@@ -12,7 +12,7 @@
       <ul>
         <router-link v-for="(item,i) in songList" :key="i" tag="li" :to="{name:'songListDetails',params:{id:item.id}}">
           <i class="iconfont icon-headset">{{format.formatPlayCount(item.playCount)}}</i>
-          <img :src="item.coverImgUrl">
+          <img v-lazy="item.coverImgUrl">
           <p>{{item.name}} - {{item.creator.nickname}}</p>
         </router-link>
       </ul>
@@ -28,7 +28,8 @@
     },
     data() {
       return {
-        tabIndex: 0
+        tabIndex: 0,
+        originNum: 0
       }
     },
     created() {
@@ -40,9 +41,30 @@
       }
     },
     methods: {
+      //切换歌单
       switchSongList(type, index) {
         this.tabIndex = index;
         this.$store.dispatch('get_playList', type);
+      },
+      //获取触摸起点
+      getOrigin(event) {
+        let ev = event || window.event;
+        this.originNum = ev.touches[0].pageX;
+      },
+      //计算距离,判断左/右滑动
+      compDistance(event) {
+        let ev = event || window.event;
+        let endNum = ev.changedTouches[0].pageX;
+        let offsetNum = endNum - this.originNum;
+        if (offsetNum > 10) {
+          this.$router.push({
+            name: 'topList'
+          })
+        } else if (offsetNum < -10) {
+          this.$router.push({
+            name: 'recommend'
+          })
+        }
       }
     }
   }

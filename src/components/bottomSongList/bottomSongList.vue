@@ -23,7 +23,6 @@
       },
       //歌曲列表
       songListDetails() {
-        console.log(this.$store.state.songListDetails.tracks);
         return this.$store.state.songListDetails.tracks;
       }
     },

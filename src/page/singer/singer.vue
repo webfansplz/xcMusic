@@ -1,7 +1,9 @@
 <template>
   <div id="singer">
     <div class="singer-header" :style="{backgroundImage:getSingerImg(singerSong.artist.picUrl)}">
-      <h1>{{singerSong.artist.name}}</h1>
+      <h1>{{singerSong.artist.name}}
+        <i class="iconfont icon-left"></i>
+      </h1>
     </div>
     <tab :line-width="2" bar-active-color="#f33" active-color='#f33' class="searchList-type">
       <tab-item selected @on-item-click="switchType">热门</tab-item>
@@ -21,7 +23,7 @@
     <div class="hotAlbums" v-else>
       <ul>
         <router-link v-for="(item,i) in singerAlbums.hotAlbums" :key="i" tag="li" :to="{name:'albumsListDetails',params:{id:item.id}}">
-          <div><img :src="item.picUrl"></div>
+          <div><img v-lazy="item.picUrl"></div>
           <span class="halfBorder">
             <p>{{item.name}}</p>
             <span>{{item.artists[0].name}} {{item.size}}首</span>
@@ -57,14 +59,12 @@
       },
       //歌手专辑
       singerAlbums() {
-        console.log(this.$store.state.Singeralbums)
         return this.$store.state.Singeralbums;
       }
     },
     methods: {
       //获取歌手头像
       getSingerImg(val) {
-        console.log(val)
         if (val != '') {
           return "url(" + val + ")";
         }
@@ -95,6 +95,11 @@
         .mx_fc(.16rem, #fff);
         text-align: center;
         font-weight: normal;
+        position:relative;
+        i{
+          .mx_postl(0,5%);
+          .mx_fc(.22rem,#fff);
+        }
       }
     }
     .songList {

@@ -1,9 +1,13 @@
 <template>
   <div id="music">
-    <audio id="musicPlayer" :src="musicUrl"  @timeupdate='setCurTime' @ended="initMusicStatus" @durationchange="setDuration" @canplay="playMusic" ref="player"></audio>
+    <audio id="musicPlayer" :src="musicUrl" @timeupdate='setCurTime' @ended="initMusicStatus" @durationchange="setDuration" @canplay="playMusic"
+      ref="player"></audio>
   </div>
 </template>
 <script>
+  import {
+    mapState
+  } from 'vuex'
   export default {
     name: 'music',
     data() {
@@ -12,14 +16,16 @@
       }
     },
     computed: {
-      //音乐url
-      musicUrl() {
-        return this.$store.state.playSongs.musicUrl;
-      },
-      //播放状态
-      playStatus() {
-        return this.$store.state.playSongs.playStatus;
-      }
+      ...mapState({
+        //音乐url
+        musicUrl: state => state.playSongs.musicUrl,
+        //播放状态
+        playStatus: state => state.playSongs.playStatus,
+        //当前音乐url
+        curMusic: state => state.playSongs.curMusic,
+        //歌单
+        songListDetails: state => state.songListDetails.tracks
+      })
     },
     methods: {
       //播放音乐
@@ -32,9 +38,31 @@
       },
       //播放完成时初始化操作
       initMusicStatus() {
-        this.$refs.player.pause();
-        this.$store.commit('set_playStatus', false);
-        this.$store.commit('set_musicCurtime', 0);
+        if (this.songListDetails.length > 0) {
+          let obj = {
+            id: this.$route.params.id,
+            type: 'next'
+          }
+          this.$store.dispatch('go_SwitchSongs', obj).then((res) => {
+            if (res == false) {
+              this.$refs.player.pause();
+              this.$store.commit('set_playStatus', false);
+              this.$store.commit('set_musicCurtime', 0);
+            } else {
+              this.$store.dispatch('get_PlaySongDetails', res);
+              this.$router.push({
+                name: 'songDetails',
+                params: {
+                  id: res
+                }
+              })
+            }
+          });
+        } else {
+          this.$refs.player.pause();
+          this.$store.commit('set_playStatus', false);
+          this.$store.commit('set_musicCurtime', 0);
+        }
       },
       //设置歌曲时长
       setDuration() {
@@ -46,7 +74,6 @@
       playStatus(state) {
         if (state == true) {
           this.$nextTick(() => {
-            console.log(123)
             this.$refs.player.play();
           })
         } else {

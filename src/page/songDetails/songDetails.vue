@@ -12,7 +12,7 @@
         <div class="cd-wrapper" @click="showLyric = true" v-if="showLyric == false">
           <div class="cd-masking">
           </div>
-          <img :src="songDetails.songs[0].al.picUrl" class="play-animat" :class="{'play-animat-status':playStatus==false}">
+          <img v-lazy="songDetails.songs[0].al.picUrl" class="play-animat" :class="{'play-animat-status':playStatus==false}">
         </div>
         <div class="LyricBox" v-if="showLyric == true" @click="showLyric = false">
           <ul :style="{marginTop:format.compLyricPos(musicCurtime,Lyric)}">
@@ -34,6 +34,9 @@
 <script>
   import player from './children/player';
   import bottomSongList from '../../components/bottomSongList/bottomSongList';
+  import {
+    mapState
+  } from 'vuex';
   export default {
     name: 'songDetails',
     data() {
@@ -49,22 +52,17 @@
       this.$store.dispatch('get_PlaySongDetails', this.$route.params.id);
     },
     computed: {
-      //歌曲详情
-      songDetails() {
-        return this.$store.state.playSongs.songDetails;
-      },
-      //歌曲当前时间
-      musicCurtime() {
-        return this.$store.state.playSongs.musicCurtime;
-      },
+      ...mapState({
+        //播放状态
+        playStatus: state => state.playSongs.playStatus,
+        //歌曲当前时间
+        musicCurtime: state => state.playSongs.musicCurtime,
+        //歌曲详情
+        songDetails: state => state.playSongs.songDetails,
+      }),
       //音乐歌词
       Lyric() {
-        // console.log(this.format.formatLyric(this.$store.state.playSongs.Lyric))
         return this.format.formatLyric(this.$store.state.playSongs.Lyric);
-      },
-      //播放状态
-      playStatus() {
-        return this.$store.state.playSongs.playStatus;
       }
     },
     methods: {

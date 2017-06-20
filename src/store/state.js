@@ -33,9 +33,16 @@ export default {
     'album': {
       'picUrl': '',
       'name': '',
-      artist: {
+      'info': {
+        'likedCount': '',
+        'commentCount': '',
+        'shareCount': ''
+      },
+      'artist': {
         'name': ''
       }
     }
-  }
+  },
+  //加载状态
+  isLoading: false
 }

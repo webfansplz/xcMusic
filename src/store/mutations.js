@@ -3,6 +3,10 @@ export default {
   set_userId(state, payload) {
     state.userUid = payload;
   },
+  //设置加载状态
+  set_isLoading(state, payload) {
+    state.isLoading = payload;
+  },
   //设置推荐歌单详情
   set_songListDetails(state, payload) {
     state.songListDetails = payload;

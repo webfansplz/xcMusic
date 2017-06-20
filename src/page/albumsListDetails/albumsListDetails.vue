@@ -7,14 +7,12 @@
       </div>
       <div class="header-contxt">
         <div class="header-contxt-l">
-          <!--<i class="iconfont icon-headset">{{format.formatPlayCount(songListDetails.playCount)}}</i>-->
-          <img :src="albums.album.picUrl">
+          <img v-lazy="albums.album.picUrl">
           <i class="iconfont icon-mxclt"></i>
         </div>
         <div class="header-contxt-r">
           <p>{{albums.album.name}}</p>
           <div>
-            <!--<img :src="songListDetails.creator.avatarUrl">-->
             <span>歌手 : <i>{{albums.album.artist.name}}</i></span>
             <i class="iconfont icon-right"></i>
           </div>

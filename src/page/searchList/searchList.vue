@@ -1,5 +1,5 @@
 <template>
-  <div id="searchList">
+  <div id="searchList" @touchstart="getOrigin" @touchend="compDistance">
     <div class="search">
       <i class="iconfont icon-micro"></i>
       <div class="search-box">
@@ -11,11 +11,11 @@
       <router-link class="cancelSearch" :to="{path:'/recommend'}">取消</router-link>
     </div>
     <tab :line-width="2" bar-active-color="#f33" active-color='#f33' class="searchList-type">
-      <tab-item @on-item-click="switchSearchType" selected>单曲</tab-item>
-      <tab-item @on-item-click="switchSearchType">歌手</tab-item>
-      <tab-item @on-item-click="switchSearchType">专辑</tab-item>
-      <tab-item @on-item-click="switchSearchType">歌单</tab-item>
-      <tab-item @on-item-click="switchSearchType">用户</tab-item>
+      <tab-item @on-item-click="switchSearchType" :selected="searchType ==1">单曲</tab-item>
+      <tab-item @on-item-click="switchSearchType" :selected="searchType ==100">歌手</tab-item>
+      <tab-item @on-item-click="switchSearchType" :selected="searchType ==10">专辑</tab-item>
+      <tab-item @on-item-click="switchSearchType" :selected="searchType ==1000">歌单</tab-item>
+      <tab-item @on-item-click="switchSearchType" :selected="searchType ==1002">用户</tab-item>
     </tab>
     <div class="searchList-hot" v-if="SearchLabel == true&&searchList.length==0">
       <h1 class="hot-title">热门搜索</h1>
@@ -36,7 +36,7 @@
     <div class="singer" v-if="searchType == 100&&searchList!=''">
       <ul>
         <router-link v-for="(item,i) in searchList.artists" :key="i" tag="li" :to="{name:'singer',params:{id:item.id}}">
-          <div><img :src="item.picUrl"></div>
+          <div><img v-lazy="item.picUrl"></div>
           <span class="halfBorder">{{item.name}}</span>
         </router-link>
       </ul>
@@ -44,20 +44,20 @@
     <!--专辑-->
     <div class="albums" v-if="searchType == 10&&searchList!=''">
       <ul>
-        <li v-for="(item,i) in searchList.albums" :key="i">
-          <div><img :src="item.picUrl"></div>
+        <router-link v-for="(item,i) in searchList.albums" :key="i" tag="li" :to="{name:'albumsListDetails',params:{id:item.id}}">
+          <div><img v-lazy="item.picUrl"></div>
           <span class="halfBorder">
             <p>{{item.name}}</p>
             <span>{{item.artists[0].name}}</span>
           </span>
-        </li>
+        </router-link>
       </ul>
     </div>
     <!--歌单-->
     <div class="playlists" v-if="searchType == 1000&&searchList!=''">
       <ul>
         <router-link v-for="(item,i) in searchList.playlists" :to="{name:'songListDetails',params:{id:item.id}}" tag="li" :key="i">
-          <div><img :src="item.coverImgUrl"></div>
+          <div><img v-lazy="item.coverImgUrl"></div>
           <span class="halfBorder">
             <p>{{item.name}}</p>
             <span>{{item.trackCount}}首音乐 by {{item.creator.nickname}}, 播放{{format.formatPlayCount(item.playCount)}}次</span>
@@ -69,7 +69,7 @@
     <div class="userprofiles" v-if="searchType == 1002&&searchList!=''">
       <ul>
         <li v-for="(item,i) in searchList.userprofiles" :key="i">
-          <div><img :src="item.backgroundUrl"></div>
+          <div><img v-lazy="item.backgroundUrl"></div>
           <span class="halfBorder">
             <p>{{item.nickname}}</p>
             <span>{{item.signature}}</span>
@@ -101,13 +101,14 @@
         //搜索类型(默认单曲)
         searchType: 1,
         //热门搜索关键词
-        hotSearchKeywords: ['My Lover', '童话镇', '谁明浪子心', '陈奕迅', '不浪漫罪名', '小幸运', '讲不出再见', '相依为命']
+        hotSearchKeywords: ['My Lover', '童话镇', '谁明浪子心', '陈奕迅', '不浪漫罪名', '小幸运', '讲不出再见', '相依为命'],
+        //触摸起点
+        originNum: 0
       }
     },
     computed: {
       //搜索列表
       searchList() {
-        console.log(this.$store.state.searchList)
         return this.$store.state.searchList;
       }
     },
@@ -141,6 +142,27 @@
           this.searchType = 1000;
         } else {
           this.searchType = 1002;
+        }
+      },
+      //获取触摸起点
+      getOrigin(event) {
+        let ev = event || window.event;
+        this.originNum = ev.touches[0].pageX;
+      },
+      //计算距离,判断左/右滑动
+      compDistance(event) {
+        let ev = event || window.event;
+        let endNum = ev.changedTouches[0].pageX;
+        let offsetNum = endNum - this.originNum;
+        let TypeBox = [1, 100, 10, 1000, 1002];
+        if (offsetNum > 10) {
+          if (this.searchType != 1002) {
+            this.searchType = TypeBox[TypeBox.indexOf(this.searchType) + 1];
+          }
+        } else if (offsetNum < -10) {
+          if (this.searchType != 1) {
+            this.searchType = TypeBox[TypeBox.indexOf(this.searchType) - 1];
+          }
         }
       }
     },

@@ -9,30 +9,31 @@
       <span class="duration">{{formatTime(musicDuration)}}</span>
     </div>
     <div class="playContxt-btnBox">
-      <span><i class="iconfont icon-songList"></i></span>
+      <span><i class="iconfont icon-playType"></i></span>
       <span @click="goPrevSongs"><i class="iconfont icon-forward"></i></span>
       <span><i class="iconfont" :class="{'icon-pause':playStatus ==true, 'icon-play':playStatus ==false}" @click="togglePlayStatus"></i></span>
       <span @click="goNextSongs"><i class="iconfont icon-forward"></i></span>
-      <span @click="openSongList"><i class="iconfont icon-songList"></i></span>
+      <span @click="openSongList"><i class="iconfont icon-playList"></i></span>
     </div>
   </div>
 </template>
 <script>
+  import {
+    mapState
+  } from 'vuex'
   export default {
     name: 'player',
     computed: {
-      //播放状态
-      playStatus() {
-        return this.$store.state.playSongs.playStatus;
-      },
-      //歌曲当前时间
-      musicCurtime() {
-        return this.$store.state.playSongs.musicCurtime;
-      },
-      //歌曲总时间
-      musicDuration() {
-        return this.$store.state.playSongs.musicDuration;
-      },
+      ...mapState({
+        //播放状态
+        playStatus: state => state.playSongs.playStatus,
+        //歌曲当前时间
+        musicCurtime: state => state.playSongs.musicCurtime,
+        //歌曲总时间
+        musicDuration: state => state.playSongs.musicDuration,
+        //歌曲列表
+        songListDetails: state => state.songListDetails.tracks,
+      }),
       //进度条长度
       progressWidth() {
         let per = (this.musicCurtime / this.musicDuration).toFixed(3);
@@ -42,35 +43,39 @@
     methods: {
       //上一曲
       goPrevSongs() {
-        let obj = {
-          id: this.$route.params.id,
-          type: 'prev'
+        if (this.songListDetails.length > 0) {
+          let obj = {
+            id: this.$route.params.id,
+            type: 'prev'
+          }
+          this.$store.dispatch('go_SwitchSongs', obj).then((res) => {
+            this.$store.dispatch('get_PlaySongDetails', res);
+            this.$router.push({
+              name: 'songDetails',
+              params: {
+                id: res
+              }
+            })
+          });
         }
-        this.$store.dispatch('go_SwitchSongs', obj).then((res) => {
-          this.$store.dispatch('get_PlaySongDetails', res);
-          this.$router.push({
-            name: 'songDetails',
-            params: {
-              id: res
-            }
-          })
-        });
       },
       //下一曲
       goNextSongs() {
-        let obj = {
-          id: this.$route.params.id,
-          type: 'next'
+        if (this.songListDetails.length > 0) {
+          let obj = {
+            id: this.$route.params.id,
+            type: 'next'
+          }
+          this.$store.dispatch('go_SwitchSongs', obj).then((res) => {
+            this.$store.dispatch('get_PlaySongDetails', res);
+            this.$router.push({
+              name: 'songDetails',
+              params: {
+                id: res
+              }
+            })
+          });
         }
-        this.$store.dispatch('go_SwitchSongs', obj).then((res) => {
-          this.$store.dispatch('get_PlaySongDetails', res);
-          this.$router.push({
-            name: 'songDetails',
-            params: {
-              id: res
-            }
-          })
-        });
       },
       //打开底部播放列表
       openSongList() {

@@ -1,17 +1,17 @@
 <template>
-  <div id="topList">
+  <div id="topList" @touchstart="getOrigin" @touchend="compDistance">
     <headerNav tabIndex="3"></headerNav>
     <div class="cloudMusicTopList">
       <h1 class="list-item-title">
         <b></b> 云音乐官方榜
       </h1>
       <div class="list-item" v-for="(item,i) in cloudMusicTopList" :key="i">
-        <img :src="item.coverImgUrl">
-        <router-link  class="halfBorder" tag="ul" :to="{name:'songListDetails',params:{id:item.id}}">
+        <img v-lazy="item.coverImgUrl">
+        <router-link class="halfBorder" tag="ul" :to="{name:'songListDetails',params:{id:item.id}}">
           <li v-for="(items,index) in dealTopList(item.tracks)">
             {{index+1}}.{{items.name}} - {{items.artists[0].name}}
           </li>
-        </router-link >
+        </router-link>
       </div>
     </div>
   </div>
@@ -23,19 +23,40 @@
     components: {
       headerNav
     },
+    data() {
+      return {
+        originNum: 0
+      }
+    },
     created() {
       this.$store.dispatch('get_cloudMusicTopList');
     },
     computed: {
       cloudMusicTopList() {
-        console.log(this.$store.state.cloudMusicTopList)
         return this.$store.state.cloudMusicTopList;
       }
     },
     methods: {
+      //获取排行榜前三名
       dealTopList(list) {
         if (list.length > 0) {
           return list.slice(0, 3);
+        }
+      },
+      //获取触摸起点
+      getOrigin(event) {
+        let ev = event || window.event;
+        this.originNum = ev.touches[0].pageX;
+      },
+      //计算距离,判断左/右滑动
+      compDistance(event) {
+        let ev = event || window.event;
+        let endNum = ev.changedTouches[0].pageX;
+        let offsetNum = endNum - this.originNum;
+        if (offsetNum < -10) {
+          this.$router.push({
+            name: 'songList'
+          })
         }
       }
     }

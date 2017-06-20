@@ -5,6 +5,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+//引入懒加载插件
+import VueLazyload from 'vue-lazyload'
+//定义懒加载插件
+Vue.use(VueLazyload, {
+  error: require('./assets/img/404nofind.jpg'),
+  loading: require('./assets/img/loading.png'),
+  attempt: 1
+})
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 //引入公用方法库

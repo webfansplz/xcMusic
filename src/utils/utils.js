@@ -15,12 +15,12 @@ export default {
     if (ary.length > 0) {
       for (let i = 0; i < ary.length; i++) {
         ary[i] = ary[i].split(']');
-        if (ary[i].length < 3) {
-          if (ary[i][0] == '' || ary[i][1] == '') {
-            ary.splice(i, 1);
-            i = i - 1;
-          }
-        }
+        // if (ary[i].length < 3) {
+        //   if (ary[i][0] == '' || ary[i][1] == '') {
+        //     ary.splice(i, 1);
+        //     i = i - 1;
+        //   }
+        // }
       }
       if (ary.length > 0 && ary[0].length == 1) {
         let noLyBox = [
@@ -52,6 +52,12 @@ export default {
       arys.sort((a, b) => {
         return a[0] - b[0];
       })
+      for (let i = 0; i < arys.length; i++) {
+        if (arys[i][0] == '' || arys[i][1] == '') {
+          arys.splice(i, 1);
+          i = i - 1;
+        }
+      }
       return arys;
     }
   },

@@ -3,7 +3,7 @@
 ## 项目地址 (project address)
 
 
-[api来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/)   感谢binaryify让我们能用自己喜欢的东西做一个自己喜欢的东西!  
+[api来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/)   感谢binaryify让我能用喜欢的东西做一个属于自己的播放器!  
 
 [源码地址](https://github.com/webfansplz/xcMusic)     不要脸的求star 哈哈哈!!!
 
@@ -70,3 +70,19 @@ vue2.0 + vuex + vue-router2.0 + es6 + axios + vux
 ![播放](https://github.com/webfansplz/xcMusic/blob/master/static/player.gif)   
 
 ![歌单](https://github.com/webfansplz/xcMusic/blob/master/static/list.gif)  
+
+
+## 项目运行(Probject running)
+
+1.克隆项目到本地 : git clone https://github.com/webfansplz/xcMusic.git  
+
+2.安装依赖环境 : npm install      
+
+3.启动项目 : npm run dev        
+
+4.打包项目 : npm run build
+
+
+## 总结(summary)
+
+本项目始于本人兴趣,还有许多不足和坑望大家海涵,欢迎大家一起交流讨论学习,喜欢的点个star呗,哈哈哈！

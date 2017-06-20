@@ -54,6 +54,7 @@ vue2.0 + vuex + vue-router2.0 + es6 + axios + vux
 
 ## 项目功能 (Project Function)
 
+### 完成功能(finish function)
 -   个性推荐,歌单,排行榜页面   
 -   播放功能(快进,快退,上一曲,下一曲,歌词同步等)
 -   搜索功能(热门搜索,单曲,歌手,专辑,歌单,用户) 
@@ -61,7 +62,11 @@ vue2.0 + vuex + vue-router2.0 + es6 + axios + vux
 -   歌手专辑功能(介绍及详情展示) 
 -   排行榜功能(云音乐官方版)
 
-![菜单](https://github.com/webfansplz/xcMusic/blob/master/static/index.gif)
-![搜索](https://github.com/webfansplz/xcMusic/blob/master/static/search.gif)
-![播放](https://github.com/webfansplz/xcMusic/blob/master/static/player.gif)
-![歌单](https://github.com/webfansplz/xcMusic/blob/master/static/list.gif)
+### 效果图 (effect picture)
+![菜单](https://github.com/webfansplz/xcMusic/blob/master/static/index.gif)   
+
+![搜索](https://github.com/webfansplz/xcMusic/blob/master/static/search.gif)   
+
+![播放](https://github.com/webfansplz/xcMusic/blob/master/static/player.gif)   
+
+![歌单](https://github.com/webfansplz/xcMusic/blob/master/static/list.gif)  

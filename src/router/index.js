@@ -8,8 +8,6 @@ const recommend = r => require.ensure([], () => r(require('../page/recommend/rec
 const songListDetails = r => require.ensure([], () => r(require('../page/songListDetails/songListDetails')), 'songListDetails')
 //歌曲详情
 const songDetails = r => require.ensure([], () => r(require('../page/songDetails/songDetails')), 'songDetails')
-//电台节目
-const djListDetails = r => require.ensure([], () => r(require('../page/djListDetails/djListDetails')), 'djListDetails')
 //精品歌单
 const songList = r => require.ensure([], () => r(require('../page/songList/songList')), 'songList')
 //排行榜
@@ -39,10 +37,6 @@ export default new Router({
       component: songDetails
     },
     {
-      path: '/djListDetails/:id',
-      name: 'djListDetails',
-      component: djListDetails
-    }, {
       path: '/songList',
       name: 'songList',
       component: songList

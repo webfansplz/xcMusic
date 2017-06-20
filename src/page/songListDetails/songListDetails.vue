@@ -3,8 +3,8 @@
     <!--推荐歌单详情头部开始-->
     <div class="header">
       <div class="header-title">
-        <i class="iconfont icon-left"></i> 歌单
-        <i class="iconfont icon-music"></i>
+        <i class="iconfont icon-left" @click="goIndex"></i> 歌单
+        <i class="iconfont icon-music" @click="goSongDetails"></i>
       </div>
       <div class="header-contxt">
         <div class="header-contxt-l">
@@ -62,8 +62,32 @@
       });
     },
     computed: {
+      //歌单详情
       songListDetails() {
         return this.$store.state.songListDetails;
+      },
+      //当前音乐
+      curMusic() {
+        return this.$store.state.playSongs.curMusic;
+      }
+    },
+    methods: {
+      //返回首页
+      goIndex() {
+        this.$router.push({
+          name: 'recommend'
+        })
+      },
+      //跳转当前歌曲页面
+      goSongDetails() {
+        if (this.curMusic != '') {
+          this.$router.push({
+            name: 'songDetails',
+            params: {
+              id: this.curMusic
+            }
+          })
+        }
       }
     }
   }

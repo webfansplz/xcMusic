@@ -2,7 +2,7 @@
   <div id="albumsListDetails">
     <div class="header">
       <div class="header-title">
-        <i class="iconfont icon-left"></i> 专辑
+        <i class="iconfont icon-left" @click="goBack"></i> 专辑
         <i class="iconfont icon-music"></i>
       </div>
       <div class="header-contxt">
@@ -56,6 +56,11 @@
     computed: {
       albums() {
         return this.$store.state.albums;
+      }
+    },
+    methods: {
+      goBack() {
+        this.$router.go(-1);
       }
     }
   }

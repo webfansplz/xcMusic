@@ -9,7 +9,7 @@
           </label>
           <input type="text" id="searchBox" @focus="goSearch">
         </div>
-        <i class="iconfont icon-music"></i>
+        <i class="iconfont icon-music" @click="goSongDetails"></i>
       </div>
       <tab :line-width="2" :custom-bar-width="getBarWidth" bar-active-color="#f33" active-color='#f33' class="tabNaver">
         <tab-item @on-item-click="skipPage" :selected="tabIndex ==0">个性推荐</tab-item>
@@ -34,7 +34,21 @@
     data() {
       return {}
     },
+    computed: {
+      curMusic() {
+        return this.$store.state.playSongs.curMusic;
+      }
+    },
     methods: {
+      //跳转当前歌曲页面
+      goSongDetails() {
+        if(this.curMusic !=''){
+          this.$router.push({
+            name:'songDetails',
+            params:{id:this.curMusic}
+          })
+        }
+      },
       //设置tab线条宽度
       getBarWidth(index) {
         let num;

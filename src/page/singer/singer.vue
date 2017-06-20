@@ -2,7 +2,7 @@
   <div id="singer">
     <div class="singer-header" :style="{backgroundImage:getSingerImg(singerSong.artist.picUrl)}">
       <h1>{{singerSong.artist.name}}
-        <i class="iconfont icon-left"></i>
+        <i class="iconfont icon-left" @click="goBack"></i>
       </h1>
     </div>
     <tab :line-width="2" bar-active-color="#f33" active-color='#f33' class="searchList-type">
@@ -77,6 +77,9 @@
         } else {
           this.$store.dispatch('get_singerAlbums', this.$route.params.id);
         }
+      },
+      goBack() {
+        this.$router.go(-1);
       }
     }
   }
@@ -95,10 +98,10 @@
         .mx_fc(.16rem, #fff);
         text-align: center;
         font-weight: normal;
-        position:relative;
-        i{
-          .mx_postl(0,5%);
-          .mx_fc(.22rem,#fff);
+        position: relative;
+        i {
+          .mx_postl(0, 5%);
+          .mx_fc(.22rem, #fff);
         }
       }
     }

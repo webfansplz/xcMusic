@@ -3,7 +3,8 @@
     <div class="headerTitle halfBorder">歌单列表</div>
     <div class="SongListContxt">
       <ul>
-        <li v-for="(item,i) in songListDetails" :key="i" class="halfBorder" @click="switchSongs(item.id)">{{item.name}}
+        <li v-for="(item,i) in songListDetails" :key="i" class="halfBorder" @click="switchSongs(item.id)" :class="{'redLight':item.id ==curMusic}">
+          <i class="iconfont icon-playing" v-if="item.id ==curMusic"></i> {{item.name}}
           <s> - {{item.ar[0].name}}</s>
         </li>
       </ul>
@@ -24,6 +25,10 @@
       //歌曲列表
       songListDetails() {
         return this.$store.state.songListDetails.tracks;
+      },
+      //当前音乐
+      curMusic() {
+        return this.$store.state.playSongs.curMusic;
       }
     },
     methods: {
@@ -74,6 +79,9 @@
           text-decoration: none;
           .mx_fc(.12rem, #666);
         }
+      }
+      .redLight {
+        color: #f33;
       }
     }
     .closeSongList {

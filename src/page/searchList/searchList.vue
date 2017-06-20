@@ -92,6 +92,10 @@
       Tab,
       TabItem
     },
+    created() {
+      this.searchVal = '';
+      this.$store.commit('set_searchList', []);
+    },
     data() {
       return {
         //搜索label显示状态

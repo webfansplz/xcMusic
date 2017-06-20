@@ -1,5 +1,24 @@
+# 仿网易云音乐(webapp)
+
+## 项目地址 (File structure)
+
+
 ```
-文件结构：
+[api来源](https://binaryify.github.io/NeteaseCloudMusicApi/#/) 
+[源码地址](https://github.com/webfansplz/xcMusic)   
+[项目预览](http://1mhere.cn)  
+```
+
+## 技术栈 (File structure)
+
+```
+vue2.0+vuex+vue-router2.0+es6+axios+vux
+```
+
+## 文件结构 (File structure)
+
+
+```
 ├── build                       构建服务和webpack配置
 ├── config                      项目不同环境的配置
 ├── dist                        项目build目录

@@ -24,16 +24,17 @@ export default {
   },
   //获取云音乐官方排行榜
   async get_cloudMusicTopList(context, payload) {
-    context.commit('set_isLoading', true);
     let indexAry = [0, 1, 3, 4];
     context.commit('set_cloudMusicTopList', '');
     for (let i = 0; i < indexAry.length; i++) {
       let res = await getData('queryToplist', {
-        idx: i
+        idx: indexAry[i]
       })
-      context.commit('set_cloudMusicTopList', res.data.result);
+      context.commit('set_cloudMusicTopList', {
+        'result': res.data.result,
+        'type': indexAry[i]
+      });
     }
-    context.commit('set_isLoading', false);
   },
   //获取电台节目
   async get_djListDetails(context, payload) {

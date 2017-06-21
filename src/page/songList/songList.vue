@@ -56,11 +56,11 @@
         let ev = event || window.event;
         let endNum = ev.changedTouches[0].pageX;
         let offsetNum = endNum - this.originNum;
-        if (offsetNum > 10) {
+        if (offsetNum > 80) {
           this.$router.push({
             name: 'topList'
           })
-        } else if (offsetNum < -10) {
+        } else if (offsetNum < -80) {
           this.$router.push({
             name: 'recommend'
           })

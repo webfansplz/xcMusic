@@ -7,9 +7,11 @@
 
 [源码地址](https://github.com/webfansplz/xcMusic)     不要脸的求star 哈哈哈!!!
 
-[项目预览](http://1mhere.cn)       1mhere.cn  
+[项目预览](http://1mhere.cn)       1mhere.cn  (pc端按F12切换手机调试模式效果更佳!)
 
+![二维码](https://github.com/webfansplz/xcMusic/blob/master/static/ercode.png) (移动端可直接扫码)
 
+   
 ## 技术栈 (technology)
 
 ```
@@ -56,6 +58,7 @@ vue2.0 + vuex + vue-router2.0 + es6 + axios + vux
 
 ### 完成功能(finish function)
 -   个性推荐,歌单,排行榜页面   
+-   滑动功能(左右滑动切换菜单)
 -   播放功能(快进,快退,上一曲,下一曲,歌词同步等)
 -   搜索功能(热门搜索,单曲,歌手,专辑,歌单,用户) 
 -   歌单功能(最新,最热,精品歌单及详情展示)
@@ -85,4 +88,4 @@ vue2.0 + vuex + vue-router2.0 + es6 + axios + vux
 
 ## 总结(summary)
 
-本项目始于本人兴趣,还有许多不足和坑望大家海涵,欢迎大家一起交流讨论学习,喜欢的点个star呗,哈哈哈！
+本项目始于本人兴趣,还有许多不足大家轻喷,欢迎大家一起交流讨论学习,喜欢的点个star呗,哈哈哈！

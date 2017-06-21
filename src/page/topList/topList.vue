@@ -5,10 +5,34 @@
       <h1 class="list-item-title">
         <b></b> 云音乐官方榜
       </h1>
-      <div class="list-item" v-for="(item,i) in cloudMusicTopList" :key="i">
-        <img v-lazy="item.coverImgUrl">
-        <router-link class="halfBorder" tag="ul" :to="{name:'songListDetails',params:{id:item.id}}">
-          <li v-for="(items,index) in dealTopList(item.tracks)">
+      <div class="list-item">
+        <img v-lazy="cloudMusicNewTopList.coverImgUrl">
+        <router-link class="halfBorder" tag="ul" :to="{name:'songListDetails',params:{id:cloudMusicNewTopList.id}}">
+          <li v-for="(items,index) in dealTopList(cloudMusicNewTopList.tracks)">
+            {{index+1}}.{{items.name}} - {{items.artists[0].name}}
+          </li>
+        </router-link>
+      </div>
+      <div class="list-item">
+        <img v-lazy="cloudMusicHotTopList.coverImgUrl">
+        <router-link class="halfBorder" tag="ul" :to="{name:'songListDetails',params:{id:cloudMusicHotTopList.id}}">
+          <li v-for="(items,index) in dealTopList(cloudMusicHotTopList.tracks)">
+            {{index+1}}.{{items.name}} - {{items.artists[0].name}}
+          </li>
+        </router-link>
+      </div>
+      <div class="list-item">
+        <img v-lazy="cloudMusicUpTopList.coverImgUrl">
+        <router-link class="halfBorder" tag="ul" :to="{name:'songListDetails',params:{id:cloudMusicUpTopList.id}}">
+          <li v-for="(items,index) in dealTopList(cloudMusicUpTopList.tracks)">
+            {{index+1}}.{{items.name}} - {{items.artists[0].name}}
+          </li>
+        </router-link>
+      </div>
+      <div class="list-item">
+        <img v-lazy="cloudMusicEleTopList.coverImgUrl">
+        <router-link class="halfBorder" tag="ul" :to="{name:'songListDetails',params:{id:cloudMusicEleTopList.id}}">
+          <li v-for="(items,index) in dealTopList(cloudMusicEleTopList.tracks)">
             {{index+1}}.{{items.name}} - {{items.artists[0].name}}
           </li>
         </router-link>
@@ -18,6 +42,9 @@
 </template>
 <script>
   import headerNav from '../../components/headerNav/headerNav';
+  import {
+    mapState
+  } from 'vuex';
   export default {
     name: 'topList',
     components: {
@@ -32,13 +59,23 @@
       this.$store.dispatch('get_cloudMusicTopList');
     },
     computed: {
-      cloudMusicTopList() {
-        return this.$store.state.cloudMusicTopList;
-      }
+      ...mapState({
+        //云音乐新歌榜
+        cloudMusicNewTopList: state => state.cloudMusicNewTopList,
+        //云音乐热歌榜
+        cloudMusicHotTopList: state => state.cloudMusicHotTopList,
+        //云音乐飙升榜
+        cloudMusicUpTopList: state => state.cloudMusicUpTopList,
+        //云音乐电音榜
+        cloudMusicEleTopList: state => state.cloudMusicEleTopList,
+      })
     },
     methods: {
       //获取排行榜前三名
       dealTopList(list) {
+        if (list == undefined) {
+          return;
+        }
         if (list.length > 0) {
           return list.slice(0, 3);
         }
@@ -53,7 +90,7 @@
         let ev = event || window.event;
         let endNum = ev.changedTouches[0].pageX;
         let offsetNum = endNum - this.originNum;
-        if (offsetNum < -10) {
+        if (offsetNum < -80) {
           this.$router.push({
             name: 'songList'
           })

@@ -159,11 +159,11 @@
         let endNum = ev.changedTouches[0].pageX;
         let offsetNum = endNum - this.originNum;
         let TypeBox = [1, 100, 10, 1000, 1002];
-        if (offsetNum > 10) {
+        if (offsetNum > 80) {
           if (this.searchType != 1002) {
             this.searchType = TypeBox[TypeBox.indexOf(this.searchType) + 1];
           }
-        } else if (offsetNum < -10) {
+        } else if (offsetNum < -80) {
           if (this.searchType != 1) {
             this.searchType = TypeBox[TypeBox.indexOf(this.searchType) - 1];
           }

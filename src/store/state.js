@@ -11,8 +11,14 @@ export default {
   },
   //歌单列表
   playList: [],
-  //云音乐官方排行榜
-  cloudMusicTopList: [],
+  //云音乐新歌榜
+  cloudMusicNewTopList: [],
+  //云音乐热歌榜  
+  cloudMusicHotTopList: [],
+  //云音乐飙升榜
+  cloudMusicUpTopList: [],
+  //云音乐电音榜
+  cloudMusicEleTopList: [],
   //电台节目
   djListDetails: [],
   //搜索列表

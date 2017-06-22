@@ -75,6 +75,7 @@
         .mx_whlh(95%, .42rem, .42rem);
         margin-left: 5%;
         .mx_fc(.14rem, #333);
+        .mx_single_ellipsis;
         s {
           text-decoration: none;
           .mx_fc(.12rem, #666);

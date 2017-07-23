@@ -13,10 +13,12 @@ const opera_res = (data) => {
 }
 //通过axios发送请求
 export default async(pathName, queryData) => {
-  let str = "https://bird.ioliu.cn/v1?url=http://47.94.16.170:3000";
+  // https://bird.ioliu.cn/v1?url=
+  let str = "http://47.94.16.170:3000";
   let url = str.concat(api[pathName]);
+  console.log(url)
   let result;
-  if (queryData != null) {
+  if (queryData) {
     result = await axios.get(url, {
       params: queryData
     });
